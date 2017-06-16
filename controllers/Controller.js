@@ -8,7 +8,7 @@ router.get("/", function(req, res) {
 
 router.post("/results", function(req, res) {
   console.log("address: " + req.body.search);
-  // res.render("results");
+  res.render("results");
 });
 
 module.exports = router;

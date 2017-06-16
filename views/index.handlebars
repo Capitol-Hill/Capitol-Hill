@@ -1,13 +1,41 @@
 <div class="container">
   <div class="nav">
-  <a class="waves-effect waves-light btn loginbtn" href="#modal1">signup / login</a>
+    <!-- Button trigger modal -->
+  <a class="waves-effect waves-light btn loginbtn" data-toggle="modal" data-target="#modal1">signup / login</a>
   <div id="modal1" class="modal">
     <div class="modal-content">
-      <h4>log in</h4>
-      <input placeholder="Placeholder" id="email" type="text" class="validate">
-      <label for="first_name">email addresss</label>
-      <input id="last_name" type="password" class="validate">
-      <label for="last_name">password</label>
+      <div class="row">
+          <div class="col s12">
+            <ul class="tabs">
+              <li class="tab col s3"><a href="#test1">login</a></li>
+              <li class="tab col s3"><a class="active" href="#test2">signup</a></li>
+            </ul>
+          </div>
+          <div id="test1" class="col s12">
+            <div class="input-field col s6">
+            <input id="email" type="text" class="validate">
+            <label for="first_name">email</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="password" type="password" class="validate">
+            <label for="last_name">password</label>
+          </div>
+        </div>
+          <div id="test2" class="col s12">signup</div>
+            <div class="input-field col s6">
+            <input id="email" type="text" class="validate">
+            <label for="email">email</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="password" type="password" class="validate">
+            <label for="last_name">password</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="address" type="text" class="validate">
+            <label for="address"> address</label>
+          </div>
+        </div>
+        </div>
     </div>
   <div class="modal-footer">
     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">log in</a>
