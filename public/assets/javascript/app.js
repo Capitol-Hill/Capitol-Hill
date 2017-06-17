@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  $(".results").hide();
   //
   // // Open
   // $('.collapsible').collapsible('open', 0);
@@ -20,6 +21,7 @@ $("#searchbutton").on('click', function() {
     $(".search-input").animate({height: "-=10px", width: "-=200px", "font-size": "16px"}, 500);
     $(".search-input").val("");
     $("#searchbutton").animate({width: "-=200px"}, 500);
+    $(".results").show();
 
   });
 
