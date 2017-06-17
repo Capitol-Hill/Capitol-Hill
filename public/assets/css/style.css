@@ -10,6 +10,27 @@
   width: 800px;
   margin: auto;
 }
+
+div#modal1.modal.show {
+  background-color: rgba(0,0,0,0);
+}
+
+.indicator {
+  visibility: hidden;
+}
+
+a#log, a#sign {
+  color: rgb(0,150,136);
+}
+a:hover, a:focus {
+  color: rgb(0,150,136);
+}
+
+/*a#log.active, a#sign.active {
+  background-color: rgba(7,137,240,.3);
+}*/
+
+
 .search-div {
   margin-top: 40px;
   margin-left: 100px;
