@@ -1,6 +1,8 @@
 var express = require("express");
 var mongojs = require("mongojs");
 var bodyParser = require("body-parser");
+var methodOverride = require("method-override");
+var port = 4000;
 var logger = require("morgan");
 var CongressMembers = require("./models/congressmembers.js");
 var SenateMembers = require("./models/senatemembers.js");
@@ -12,9 +14,22 @@ app.use(logger("dev"));
 app.use(bodyParser.urlencoded({
   extended: false
 }));
+app.use(methodOverride("_method"));
+
 
 // Set up a static folder (public) for our web app
 app.use(express.static("public"));
+
+
+var exphbs = require("express-handlebars");
+
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
+// var routes = require("./controllers/Controller.js");
+
+// app.use("/", routes);
+
 
 // Database configuration
 // Save the URL of our database as well as the name of our collection
@@ -92,9 +107,8 @@ app.get("/senators", function(req, res) {
 
 
 // -----------------------------------------------------------------------------------------------------
-// Set the app to listen on port 3000
-app.listen(3000, function() {
-  console.log("App running on port 3000!");
+// Set the app to listen on port 4000
+app.listen(port, function() {
+  console.log("App running on port " + port);
 });
 // -----------------------------------------------------------------------------------------------------
-

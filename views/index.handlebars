@@ -1,0 +1,98 @@
+<div class="container">
+  <div class="nav">
+    <!-- Button trigger modal -->
+  <a class="waves-effect waves-light btn loginbtn" data-toggle="modal" data-target="#modal1">signup / login</a>
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <div class="row">
+          <div class="col s12">
+            <ul class="tabs">
+              <li class="tab col s3"><a class="active" id="log" href="#test1">login</a></li>
+              <li class="tab col s3"><a href="#test2" id="sign">signup</a></li>
+            </ul>
+          </div>
+          <div id="test1" class="col s12">
+            <div class="input-field col s6">
+            <input id="email" type="text" class="validate">
+            <label for="email">email</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="password" type="password" class="validate">
+            <label for="last_name">password</label>
+          </div>
+        </div>
+          <div id="test2" class="col s12">
+            <div class="input-field col s6">
+            <input id="email" type="text" class="validate">
+            <label for="first_name">email</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="password" type="password" class="validate">
+            <label for="last_name">password</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="address" type="text" class="validate">
+            <label for="address"> address</label>
+          </div>
+        </div>
+        </div>
+    <a href="/" class="modal-action modal-close waves-effect waves-green btn-flat">continue</a>
+</div>
+</div>
+</div>
+<div class="banner">
+  <div class="logo">Capitol Hill <i class="fa fa-flag" aria-hidden="true"></i>
+  </div>
+</div>
+<div class="main-container">
+  <div class="row">
+    <div class="col-lg-12">
+    </div>
+  </div>
+  <div class="row">
+  </div>
+  <div class="col-lg-12 search-div">
+
+    <!-- <form action="/results" method="POST"> -->
+
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label searchbar">
+      <input class="mdl-textfield__input search-input" type="text" id="search" name="search">
+      <label class="mdl-textfield__label" for="sample3">enter address</label>
+
+    </div>
+
+    <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored search-button" id="searchbutton">
+            <i class="material-icons">search</i>
+          </button>
+            <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            address
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="#">Address</a></li>
+            <li><a href="#">Senator</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </div>
+
+    <!-- </form> -->
+
+
+  </div>
+  <div class="row">
+    <div class="col-lg-12"></div>
+  </div>
+
+
+</div>
+
+<!-- <script>
+
+
+$("#search").on("submit", function(event) {
+  $(".searchbar").animate({bottom: "300px"});
+})
+</script> -->
