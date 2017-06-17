@@ -74,21 +74,32 @@ app.get("/senators", function(req, res) {
 });
 
 
+
+
+
+
+
+
 // -----------------------------------------------------------------------------------------------------
 // POPULATE collections
 // -----------------------------------------------------------------------------------------------------
 // Run this to populate the Congress Collection:
 
 // for (var i = 0; i < CongressMembers.results[0].members.length; i++){
-// // console.log(CongressMembers.results[0].members)
-//     db.Congress.insert(CongressMembers.results[0].members[i])
+// var id = CongressMembers.results[0].members[i].id;
+// var imageURL = `https://theunitedstates.io/images/congress/450x550/${id}.jpg`;
+//     db.Congress.insert(CongressMembers.results[0].members[i]); 
+//     db.Congress.update(CongressMembers.results[0].members[i], {$set: {image: imageURL}});
 // }
 
 // Run this to populate the Senators Collection:
 
 // for (var i = 0; i < SenateMembers.results[0].members.length; i++){
-// // console.log(SenateMembers.results[0].members)
-//     db.Senators.insert(SenateMembers.results[0].members[i])
+  // var id = SenateMembers.results[0].members[i].id;
+  // var imageURL = `https://theunitedstates.io/images/senate/450x550/${id}.jpg`;
+  // console.log(SenateMembers.results[0].members)
+    // db.Senators.insert(SenateMembers.results[0].members[i])
+    // db.Senators.update(SenateMembers.results[0].members[i], {$set: {image: imageURL}});
 // }
 // -----------------------------------------------------------------------------------------------------
 
@@ -108,6 +119,7 @@ app.get("/senators", function(req, res) {
 
 // -----------------------------------------------------------------------------------------------------
 // Set the app to listen on port 4000
+
 app.listen(port, function() {
   console.log("App running on port " + port);
 });
