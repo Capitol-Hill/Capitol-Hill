@@ -65,18 +65,16 @@
     <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored search-button" id="searchbutton">
             <i class="material-icons">search</i>
           </button>
-            <div class="dropdown">
-          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            address
-            <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li><a href="#">Address</a></li>
-            <li><a href="#">Senator</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+          <!-- Dropdown Trigger -->
+          <a class='dropdown-button btn' href='#' data-activates='dropdown1'>search by</a>
+
+          <!-- Dropdown Structure -->
+          <ul id='dropdown1' class='dropdown-content'>
+            <li><a href="#!">Address</a></li>
+            <li><a href="#!">Senator</a></li>
+
           </ul>
-        </div>
+
 
     <!-- </form> -->
 
