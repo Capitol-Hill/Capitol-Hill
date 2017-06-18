@@ -49,7 +49,7 @@ db.on("error", function(error) {
 // Routes
 // -----------------------------------------------------------------------------------------------------
 app.get("/", function(req, res) {
-    res.send(index.html)
+    res.render("index")
 });
 
 // display every entry in the district collection
@@ -75,36 +75,47 @@ app.get("/senators", function(req, res) {
 
 
 
+// -----------------------------------------------------------------------------------------------------
+// Handlebars Routes
+// -----------------------------------------------------------------------------------------------------
 
-
-
+//grabbing search value and rendering results data
+app.post("/results", function(req, res) {
+  var first = req.body.first;
+  var last = req.body.last;
+  db.Senators.find({first_name: first, last_name: last }, function(error, senator) {
+    if (error) { console.log(error)}
+     var hbsObj = senator;
+     res.json(senator);
+  });
+});
 
 
 // -----------------------------------------------------------------------------------------------------
 // POPULATE collections
 // -----------------------------------------------------------------------------------------------------
 // Run this to populate the Congress Collection:
-
+//
 // for (var i = 0; i < CongressMembers.results[0].members.length; i++){
 // var id = CongressMembers.results[0].members[i].id;
 // var imageURL = `https://theunitedstates.io/images/congress/450x550/${id}.jpg`;
-//     db.Congress.insert(CongressMembers.results[0].members[i]); 
+//     db.Congress.insert(CongressMembers.results[0].members[i]);
 //     db.Congress.update(CongressMembers.results[0].members[i], {$set: {image: imageURL}});
 // }
-
-// Run this to populate the Senators Collection:
-
+//
+// // Run this to populate the Senators Collection:
+//
 // for (var i = 0; i < SenateMembers.results[0].members.length; i++){
-  // var id = SenateMembers.results[0].members[i].id;
-  // var imageURL = `https://theunitedstates.io/images/senate/450x550/${id}.jpg`;
-  // console.log(SenateMembers.results[0].members)
-    // db.Senators.insert(SenateMembers.results[0].members[i])
-    // db.Senators.update(SenateMembers.results[0].members[i], {$set: {image: imageURL}});
+//   var id = SenateMembers.results[0].members[i].id;
+//   var imageURL = `https://theunitedstates.io/images/senate/450x550/${id}.jpg`;
+//   console.log(SenateMembers.results[0].members)
+//     db.Senators.insert(SenateMembers.results[0].members[i])
+//     db.Senators.update(SenateMembers.results[0].members[i], {$set: {image: imageURL}});
 // }
-// -----------------------------------------------------------------------------------------------------
+// // -----------------------------------------------------------------------------------------------------
 
 // -----------------------------------------------------------------------------------------------------
-// Playing with queries. 
+// Playing with queries.
 // -----------------------------------------------------------------------------------------------------
 // Sorts congress by most missed votes descending
 // db.Congress.find({}).sort({missed_votes: -1}, (error, senators) => error ? console.log(error) : console.log(senators));

@@ -94,11 +94,11 @@ input:-webkit-autofill {
   visibility: hidden;
 }*/
 
-.demo-card-image.mdl-card {
+.demo-card-image.mdl-card, .sen-image {
   float: left;
   width: 250px;
   height: 250px;
-  background: url('../user-placeholder.jpg') center / cover;
+  
 }
 .demo-card-image > .mdl-card__actions {
   height: 52px;
