@@ -49,7 +49,7 @@ db.on("error", function(error) {
 // Routes
 // -----------------------------------------------------------------------------------------------------
 app.get("/", function(req, res) {
-    res.render("index")
+    res.render(index)
 });
 
 // display every entry in the district collection
