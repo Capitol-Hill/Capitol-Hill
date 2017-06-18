@@ -72,7 +72,6 @@
             maxZoom: 18
         }).addTo(congressionalDistrictsMaps);
 
-
     // Imports the GeoJSON documents from our Districts API (imported from MongoDb)
     function getDistricts() {
         $.getJSON("/districts", function(data) {
@@ -82,25 +81,33 @@
             L.geoJSON(geojsonFeature, {
                 onEachFeature: onEachFeature
             }).addTo(congressionalDistrictsMaps);
-
             // Figure out how to color code districs based off party affiliation of Congressman
         })
     }
+
     getDistricts();
 
     // A function that gets passed to each GeoJSON layer. If that layer is clicked, it pulls up the properties of that layer
     function onEachFeature(feature, layer) {
+
         var district = feature.properties.District;
         var districtCode = feature.properties.Code;
-
-        // db.Congress.find({state: CodeArray[0], district: CodeArray[1]})
-        layer.bindPopup(`District: ${district}<br>District Code: ${districtCode}`);
-
         // Spliting the district code will be used for finding the congressman of that district
         var CodeArray = districtCode.split("-");
-        // console.log(CodeArray)
-    }
+        var stateID = CodeArray[0];
+        var districtID = CodeArray[1];
 
+        var congressMember = $.getJSON("/congress", function(data) {
+                $.grep(data, function(result) {
+                    return result.state === stateID && result.district === districtID;
+                })
+            })
+
+        console.log(congressMember)
+
+        // db.Congress.find({state: CodeArray[0], district: CodeArray[1]})
+        layer.bindPopup(`${congressMember} ${congressMember.last_name}<br>District: ${district}<br>District Code: ${districtCode}`);
+    }
 
 
 
