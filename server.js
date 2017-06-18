@@ -4,8 +4,8 @@ var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
 var port = 4000;
 var logger = require("morgan");
-var CongressMembers = require("./models/congressmembers.js");
-var SenateMembers = require("./models/senatemembers.js");
+// var CongressMembers = require("/congressmembers.js");
+// var SenateMembers = require("./models/senatemembers.js");
 
 var app = express();
 
@@ -49,7 +49,7 @@ db.on("error", function(error) {
 // Routes
 // -----------------------------------------------------------------------------------------------------
 app.get("/", function(req, res) {
-    res.render(index)
+    res.render("index")
 });
 
 // display every entry in the district collection
@@ -74,7 +74,6 @@ app.get("/senators", function(req, res) {
 });
 
 
-
 // -----------------------------------------------------------------------------------------------------
 // Handlebars Routes
 // -----------------------------------------------------------------------------------------------------
@@ -89,6 +88,8 @@ app.post("/results", function(req, res) {
      res.json(senator);
   });
 });
+
+
 
 
 // -----------------------------------------------------------------------------------------------------
