@@ -6,9 +6,11 @@ router.get("/", function(req, res) {
   res.render("index");
 });
 
-router.post("/results", function(req, res) {
-  console.log("address: " + req.body.search);
-  res.render("results");
-});
+// router.post("/results", function(req, res) {
+//   console.log("address: " + req.body.search);
+//   res.redirect("back");
+// });
+
+// router.post("/")
 
 module.exports = router;
