@@ -6,13 +6,15 @@ var port = 4000;
 var logger = require("morgan");
 // var CongressMembers = require("/congressmembers.js");
 // var SenateMembers = require("./models/senatemembers.js");
+var passport = require("passport");
+
 
 var app = express();
 
 // Set the app up with morgan, body-parser, and a static folder
 app.use(logger("dev"));
 app.use(bodyParser.urlencoded({
-  extended: false
+    extended: false
 }));
 app.use(methodOverride("_method"));
 
@@ -34,14 +36,14 @@ app.set("view engine", "handlebars");
 // Database configuration
 // Save the URL of our database as well as the name of our collection
 var databaseUrl = "CapitolHill_Db";
-var collections = ["Districts", "Senators", "Congress"];
+var collections = ["Districts", "Senators", "Congress", "Users"];
 
 // Use mongojs to hook the database to the db variable
 var db = mongojs(databaseUrl, collections);
 
 // This makes sure that any errors are logged if mongodb runs into an issue
 db.on("error", function(error) {
-  console.log("Database Error:", error);
+    console.log("Database Error:", error);
 });
 
 
@@ -54,23 +56,23 @@ app.get("/", function(req, res) {
 
 // display every entry in the district collection
 app.get("/districts", function(req, res) {
-  db.Districts.find({}, function(error, districs) {
-     error ? console.log(error) : res.json(districs);
-  });
+    db.Districts.find({}, function(error, districs) {
+        error ? console.log(error) : res.json(districs);
+    });
 });
 
 // display every member in the Congress collection
 app.get("/congress", function(req, res) {
-  db.Congress.find({}, function(error, congress) {
-     error ? console.log(error) : res.json(congress);
-  });
+    db.Congress.find({}, function(error, congress) {
+        error ? console.log(error) : res.json(congress);
+    });
 });
 
 // display every member in the Senators collection
 app.get("/senators", function(req, res) {
-  db.Senators.find({}, function(error, senators) {
-     error ? console.log(error) : res.json(senators);
-  });
+    db.Senators.find({}, function(error, senators) {
+        error ? console.log(error) : res.json(senators);
+    });
 });
 
 
@@ -80,13 +82,13 @@ app.get("/senators", function(req, res) {
 
 //grabbing search value and rendering results data
 app.post("/results", function(req, res) {
-  var first = req.body.first;
-  var last = req.body.last;
-  db.Senators.find({first_name: first, last_name: last }, function(error, senator) {
-    if (error) { console.log(error)}
-     var hbsObj = senator;
-     res.json(senator);
-  });
+    var first = req.body.first;
+    var last = req.body.last;
+    db.Senators.find({ first_name: first, last_name: last }, function(error, senator) {
+        if (error) { console.log(error) }
+        var hbsObj = senator;
+        res.json(senator);
+    });
 });
 
 
@@ -133,6 +135,6 @@ app.post("/results", function(req, res) {
 // Set the app to listen on port 4000
 
 app.listen(port, function() {
-  console.log("App running on port " + port);
+    console.log("App running on port " + port);
 });
 // -----------------------------------------------------------------------------------------------------
