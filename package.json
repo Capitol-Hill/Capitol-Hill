@@ -17,7 +17,8 @@
     "method-override": "^2.3.5",
     "mongojs": "^2.4.0",
     "morgan": "^1.8.2",
-    "mysql": "^2.10.2"
+    "mysql": "^2.10.2",
+    "passport": "^0.3.2"
   },
   "devDependencies": {
     "handlebars-helper-css": "^0.1.0"
