@@ -115,6 +115,7 @@ input:-webkit-autofill {
   float: left;
   width: 250px;
   height: 250px;
+  background-size: cover;
 }
 
 .demo-card-image>.mdl-card__actions {
