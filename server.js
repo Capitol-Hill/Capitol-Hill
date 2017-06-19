@@ -88,7 +88,7 @@ app.get("/senators", function(req, res) {
 // for (var i = 0; i < CongressMembers.results[0].members.length; i++){
 // var id = CongressMembers.results[0].members[i].id;
 // var imageURL = `https://theunitedstates.io/images/congress/450x550/${id}.jpg`;
-//     db.Congress.insert(CongressMembers.results[0].members[i]); 
+//     // db.Congress.insert(CongressMembers.results[0].members[i]); 
 //     db.Congress.update(CongressMembers.results[0].members[i], {$set: {image: imageURL}});
 // }
 

@@ -61,6 +61,7 @@
     </div>
     <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg==" crossorigin=""></script>
     <script type="text/javascript">
+    
     var centerOfAmerica = [40.134335, -96.298589];
 
     // Create the map, sets the view to the centerOfAmerica
@@ -89,24 +90,29 @@
 
     // A function that gets passed to each GeoJSON layer. If that layer is clicked, it pulls up the properties of that layer
     function onEachFeature(feature, layer) {
-
         var district = feature.properties.District;
         var districtCode = feature.properties.Code;
         // Spliting the district code will be used for finding the congressman of that district
         var CodeArray = districtCode.split("-");
         var stateID = CodeArray[0];
-        var districtID = CodeArray[1];
+        var districtID = CodeArray[1] === "AL" ? "1" : CodeArray[1];
+        var congressMember;
 
-        var congressMember = $.getJSON("/congress", function(data) {
-                $.grep(data, function(result) {
-                    return result.state === stateID && result.district === districtID;
-                })
+        $.getJSON("/congress", function(data) {
+            congressMember = data.filter(function(response) {
+                return response.state === stateID && response.district === parseInt(districtID).toString();
             })
-
-        console.log(congressMember)
-
-        // db.Congress.find({state: CodeArray[0], district: CodeArray[1]})
-        layer.bindPopup(`${congressMember} ${congressMember.last_name}<br>District: ${district}<br>District Code: ${districtCode}`);
+            // console.log(congressMember)
+            layer.bindPopup(`<strong> Congressional Representative</strong>
+                            <br>
+                            <img src='${congressMember[0].image}' style="height: 176px; width:144px">
+                            <br>${congressMember[0].first_name} ${congressMember[0].last_name}
+                            <br>District: ${district}
+                            <br>District Code: ${districtCode}
+                            <br>
+                            <strong>Senator: </strong>
+                            `)
+        })
     }
 
 
