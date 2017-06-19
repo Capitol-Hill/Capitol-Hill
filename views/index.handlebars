@@ -17,37 +17,40 @@
         <div id="test1" class="col s12">
           <form action="/login">
             <div class="input-field col s6">
-              <input id="email" type="text" class="validate">
+              <input id="login-email" type="text" class="validate">
               <label for="email">email</label>
             </div>
             <div class="input-field col s6">
-              <input id="password" type="password" class="validate">
+              <input id="login-password" type="password" class="validate">
               <label for="last_name">password</label>
             </div>
+            <a href="/" class="modal-action modal-close waves-effect waves-green btn-flat" id="login-submit">Log In</a>
         </div>
         </form>
         <div id="test2" class="col s12">
           <form action="/signup">
              <div class="input-field col s6">
-              <input id="email" type="text" class="validate">
+              <input id="new-email" type="text" class="validate">
               <label for="email">email</label>
             </div>
             <div class="input-field col s6">
-              <input id="email" type="text" class="validate">
-              <label for="username">username</label>
+              <input id="new-address" type="text" class="validate">
+              <label for="address">address</label>
             </div>
             <div class="input-field col s6">
-              <input id="password" type="password" class="validate">
+              <input id="new-password" type="password" class="validate">
               <label for="password">password</label>
             </div>
             <div class="input-field col s6">
-              <input id="address" type="text" class="validate">
-              <label for="address">address</label>
+              <input id="new-confirm" type="confirm" class="validate">
+              <label for="confirm">confirm password</label>
             </div>
+          
+           
+            <a href="/" class="modal-action modal-close waves-effect waves-green btn-flat" id="register-submit">Register</a>
         </div>
         </form>
       </div>
-      <a href="/" class="modal-action modal-close waves-effect waves-green btn-flat">continue</a>
     </div>
   </div>
 </div>
