@@ -13,60 +13,62 @@ class LoginModal extends React.Component{
       <div className="container">
         <div className="nav">
           {/* <!-- Button trigger modal --> */}
-          <a className="waves-effect waves-light btn loginbtn" data-toggle="modal" data-target="#modal1">signup / login</a>
+          <a className="waves-effect waves-light btn loginbtn" href="#SignUpLogin">signup / login</a>
           <a className="btn-floating btn-large waves-effect waves-light teal mapbtn" href="map.html">
             <i className="fa fa-globe" aria-hidden="true"></i>
           </a>
         </div>
-        <div id="modal1" className="modal">
-          <div className="modal-content">
-            <div className="row">
-              <div className="col s12">
-                <ul className="tabs">
-                  <li className="tab col s3">
-                    <a className="active" id="log" href="#test1">login</a>
-                  </li>
-                  <li className="tab col s3">
-                    <a href="#test2" id="sign">signup</a>
-                  </li>
 
-                </ul>
-              </div>
-              <div id="test1" className="col s12">
-                <form action="/login">
-                  <div className="input-field col s6">
-                    <input id="email" type="text" className="validate"/>
-                    <label htmlFor="email">email</label>
-                  </div>
-                  <div className="input-field col s6">
-                    <input id="password" type="password" className="validate"/>
-                    <label htmlFor="last_name">password</label>
-                  </div>
+        {/* Modal body */}
+        <div id="SignUpLogin" className="modal SignUpLogin">
+         <div className="modal-content">
+           <div className="row">
 
-                </form>
-              </div>
-              <div id="test2" className="col s12">
-                <form action="/signup">
-                  <div className="input-field col s6">
-                    <input id="email" type="text" className="validate"/>
-                    <label htmlFor="first_name">email</label>
-                  </div>
-                  <div className="input-field col s6">
-                    <input id="password" type="password" className="validate"/>
-                    <label htmlFor="last_name">password</label>
-                  </div>
-                  <div className="input-field col s6">
-                    <input id="address" type="text" className="validate"/>
-                    <label htmlFor="address">
-                      address</label>
-                  </div>
-                </form>
-              </div>
+             <div className="col s12">
+               <ul className="tabs">
+                 <li className="tab col s3">
+                     <a className="active " id="log" href="#login-modal">Login</a>
+                 </li>
+                 <li className="tab col s3">
+                   <a href="#signUp-modal" id="sign">Sign Up</a>
+                 </li>
+               </ul>
+             </div>
 
-            </div>
-            <a href="/" className="modal-action modal-close waves-effect waves-green btn-flat">continue</a>
-          </div>
-        </div>
+             <div id="login-modal" className="col s12">
+               <form action="/login">
+                 <div className="input-field col s12">
+                   <input id="email" type="text" className="validate"/>
+                   <label htmlFor="email">Email</label>
+                 </div>
+                 <div className="input-field col s12">
+                   <input id="password" type="password" className="validate"/>
+                   <label htmlFor="last_name">Password</label>
+                 </div>
+           <a href="/" className="modal-action modal-close waves-effect waves-green btn-flat">Login</a>
+               </form>
+             </div>
+             <div id="signUp-modal" className="col s12">
+               <form action="/signup">
+                 <div className="input-field col s12">
+                   <input id="email" type="text" className="validate"/>
+                   <label htmlFor="first_name">Email</label>
+                 </div>
+                 <div className="input-field col s12">
+                   <input id="password" type="password" className="validate"/>
+                   <label htmlFor="last_name">Password</label>
+                 </div>
+                 <div className="input-field col s12">
+                   <input id="address" type="text" className="validate"/>
+                   <label htmlFor="Address">
+                     Address</label>
+                 </div>
+                 <a href="/" className="modal-action modal-close waves-effect waves-green btn-flat">Register</a>
+               </form>
+             </div>
+         </div>
+       </div>
+     </div>
       </div>
     );
   }
