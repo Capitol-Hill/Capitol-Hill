@@ -83,9 +83,16 @@ app.post("/results", function(req, res) {
   var first = req.body.first;
   var last = req.body.last;
   db.Senators.find({first_name: first, last_name: last }, function(error, senator) {
-    if (error) { console.log(error)}
-     var hbsObj = senator;
-     res.json(senator);
+    if (senator.length > 0) {
+      console.log(senator)
+      res.json(senator);
+    } else {
+      console.log("else")
+      db.Congress.find({first_name: first, last_name: last }, function(error, congressman) {
+        console.log(congressman)
+        res.json(congressman);
+      });
+    };
   });
 });
 
