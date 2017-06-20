@@ -18,7 +18,7 @@ class Results extends React.Component{
       <div className = "main-container" >
         <div className="row">
           <div className="col-lg-6">
-            <div className="demo-card-image mdl-card mdl-shadow--2dp">
+            <div className="demo-card-image mdl-card mdl-shadow--2dp sen-image">
               <div className="mdl-card__title mdl-card--expand">
 
               </div>
@@ -28,7 +28,7 @@ class Results extends React.Component{
 
           <div className="card-panel contact-box">
             <span className="black-text">
-                            <h3 className="senatorName"></h3>
+              <h3 className="senatorName"></h3>
               {/* <h3>Name {{this.name}}</h3> */}
               <ul className="collapsible" data-collapsible="accordion">
                 <li>

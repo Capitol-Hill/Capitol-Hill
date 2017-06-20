@@ -1,9 +1,9 @@
 var express = require("express");
-var mongojs = require("mongojs");
 var bodyParser = require("body-parser");
+var logger = require("morgan");
+var mongojs = require("mongojs");
 var methodOverride = require("method-override");
 var port = 4000;
-var logger = require("morgan");
 // var CongressMembers = require("./data/congressmembers.js");
 // var SenateMembers = require("./data/senatemembers.js");
 // var DistrictsData = require("./data/All_Districts.js")
