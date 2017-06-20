@@ -28,7 +28,7 @@ class Results extends React.Component{
 
           <div className="card-panel contact-box">
             <span className="black-text">
-                            <h3 className="senatorName"></h3>
+              <h3 className="senatorName"></h3>
               {/* <h3>Name {{this.name}}</h3> */}
               <ul className="collapsible" data-collapsible="accordion">
                 <li>

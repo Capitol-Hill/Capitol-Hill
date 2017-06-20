@@ -3,10 +3,11 @@ import {Link} from "react-router";
 
 import Results from "./Results";
 import LoginModal from "./LoginModal";
+import MapComponent from "./MapComponent.js";
 
 class Home extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
   };
 
   render() {
@@ -58,6 +59,7 @@ class Home extends React.Component {
                   Capitol Hill <i className="fa fa-flag" aria-hidden="true"></i>
                 </div> --> */}
                 <Results/>
+                {this.props.children}
               </div>
             </div>
 
