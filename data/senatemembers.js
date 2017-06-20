@@ -1,5 +1,4 @@
 var SenateMembers = {
-    
         "_id": "59459c07d31d14b1df5b0354",
         "id": "A000360",
         "api_uri": "https://api.propublica.org/congress/v1/members/A000360.json",
@@ -2939,7 +2938,7 @@ var SenateMembers = {
         "lis_id": "S349",
         "missed_votes_pct": 0,
         "votes_with_party_pct": 97.96,
-        "image": "https://cdn.civil.services/senate/headshots/512x512/rob-portman.jpg"
+        "image": "https://cdn.civil.services/senate/headshots/512x512/robert-portman.jpg"
     }, {
         "_id": "59459c07d31d14b1df5b039b",
         "id": "P000603",
@@ -3611,7 +3610,7 @@ var SenateMembers = {
         "lis_id": "S382",
         "missed_votes_pct": 2.04,
         "votes_with_party_pct": 96.53,
-        "image": "https://cdn.civil.services/senate/headshots/512x512/ben-sasse.jpg"
+        "image": "https://cdn.civil.services/senate/headshots/512x512/benjamin-sasse.jpg"
     }, {
         "_id": "59459c07d31d14b1df5b03ab",
         "id": "S001198",
@@ -4201,6 +4200,7 @@ var SenateMembers = {
         "votes_with_party_pct": 97.96,
         "image": "https://cdn.civil.services/senate/headshots/512x512/todd-young.jpg"
     }
+
 
 
 module.exports = SenateMembers;

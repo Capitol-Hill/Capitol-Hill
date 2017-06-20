@@ -40,10 +40,11 @@
                 <div class="mdl-grid">
                     <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--6-phone">
                         <div class="wide-card mdl-card mdl-shadow--8dp">
-                            <form role='form' class="create-update-form" action="/search" method="POST">
+                            <!-- <form role='form' class="create-update-form" action="/search" method="POST"> -->
+                            <form role='form' class="create-update-form">
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                     <input class="mdl-textfield__input" type="text" id="search" name="search">
-                                    <label class="mdl-textfield__label" for="searc">Search</label>
+                                    <label class="mdl-textfield__label" for="search">Search</label>
                                 </div>
                                 <div class="mdl-card__actions mdl-card--border">
                                     <button type="submit" class='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect' id='submit-btn'> Submit </button>
@@ -62,7 +63,6 @@
     <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg==" crossorigin=""></script>
     <script type="text/javascript">
     var centerOfAmerica = [40.134335, -96.298589];
-
     // Create the map, sets the view to the centerOfAmerica
     var congressionalDistrictsMaps = L.map('mapid').setView(centerOfAmerica, 4);
 
@@ -106,10 +106,10 @@
         // Spliting the district code will be used for finding the congressman of that district
         var CodeArray = districtCode.split("-");
         var stateID = CodeArray[0];
+        // States with one district are called At-Large, such as Alaska At-Large or AK-AL, hence we changed the AL to a 1 so that our database can recognize it.
         var districtID = CodeArray[1] === "AL" ? "1" : CodeArray[1];
         var congressMember;
         var senator;
-
         $.getJSON("/congress", function(congressData) {
             congressMember = congressData.filter(function(congressman) {
                 return congressman.state === stateID && congressman.district === parseInt(districtID).toString();
@@ -120,7 +120,8 @@
                 })
 
                 if (!congressMember[0]) {
-                    layer.bindPopup(`<strong>${senator[0].state} Senators: </strong>
+                    layer.bindPopup(`
+                            <strong>${senator[0].state} Senators: </strong>
                             <br><img src='${senator[0].image}' style="height: 176px; width: 176px">
                             <br>${senator[0].first_name} ${senator[0].last_name} (${senator[0].party})
                             <br><a href='/senate/${senator[0].id}/'>View ${senator[0].first_name} ${senator[0].last_name}'s Legislation Voting History</a>
@@ -134,7 +135,8 @@
                             <br><strong>No Current Congressman</strong>
                             `)
                 } else {
-                    layer.bindPopup(`<strong>${senator[0].state} Senators: </strong>
+                    layer.bindPopup(`
+                            <strong>${senator[0].state} Senators: </strong>
                             <br><img src='${senator[0].image}' style="height: 176px; width: 176px">
                             <br>${senator[0].first_name} ${senator[0].last_name} (${senator[0].party})
                             <br><a href='/senate/${senator[0].id}/'>View ${senator[0].first_name} ${senator[0].last_name}'s Legislation Voting History</a>
@@ -155,6 +157,34 @@
             })
         })
     }
+
+
+    function search(location) {
+    //   console.log(location);
+        const geocodeAPI = "e0b0d01ed16c4ac7a6839fee808f7142";
+        let location = location.trim().replace(/ /g, "+");
+            const queryURL = "http://api.opencagedata.com/geocode/v1/json?query=" + location + "&pretty=1&key=" + geocodeAPI;
+
+        $.get(queryURL, function(err, res) {
+            err ? console.log(err) : console.log(res)
+            let newView = [40.134335, -96.298589];
+            congressionalDistrictsMaps = L.map("madpid").setView(newView, 6);
+        })
+    }
+
+
+
+      $("#submit-btn").on("submit", function (event) {
+          event.preventDefault();
+          console.log(event)
+
+          })
+        //   $.get("/search", (req, res) => {console.log(req.body); console.log(res)});
+
+        // runQuery: (location) => {
+
+
+
     </script>
 </body>
 
