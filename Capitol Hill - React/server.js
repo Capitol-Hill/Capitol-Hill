@@ -24,7 +24,7 @@ app.use(express.static(__dirname +"/public"));
 app.use("/", routes);
 // -------------------------------------------------
 
-var db = process.env.MONGODB_URI || "mongodb://localhost/captital-hill-react";
+var db = process.env.MONGODB_URI || "mongodb://localhost/CapitolHill_Db";
 
 // Connect mongoose to our database
 mongoose.connect(db, function(error) {
@@ -36,6 +36,16 @@ mongoose.connect(db, function(error) {
   else {
     console.log("mongoose connection is successful");
   }
+});
+
+app.post("/results", function(req, res) {
+  var first = req.body.first;
+  var last = req.body.last;
+  db.Senators.find({first_name: first, last_name: last }, function(error, senator) {
+    if (error) { console.log(error)}
+     var hbsObj = senator;
+     res.json(senator);
+  });
 });
 
 // Start the server
