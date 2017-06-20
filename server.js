@@ -87,15 +87,22 @@ app.get("/senators", function(req, res) {
 // -----------------------------------------------------------------------------------------------------
 
 //grabbing search value and rendering results data
-app.post("/results", function(req, res) {
-    var first = req.body.first;
-    var last = req.body.last;
-    db.Senators.find({ first_name: first, last_name: last }, function(error, senator) {
-        if (error) { console.log(error) }
-        var hbsObj = senator;
-        res.json(senator);
-    });
-});
+ app.post("/results", function(req, res) {
+ var first = req.body.first;
+ var last = req.body.last;
+  db.Senators.find({first_name: first, last_name: last }, function(error, senator) {
+    if (senator.length > 0) {
+      console.log(senator)
+      res.json(senator);
+    } else {
+      console.log("else")
+     db.Congress.find({first_name: first, last_name: last }, function(error, congressman) {
+        console.log(congressman)
+       res.json(congressman);
+      });
+    };
+  });
+ });
 
 
 
@@ -109,7 +116,7 @@ app.post("/results", function(req, res) {
 //    db.Districts.insert(DistrictsWithParty[i]);
 // }
 // -----------------------------------------------------------------------------------------------------
-// This function was used to populate the GeoJSON files in the database with party affiliation of the district's representative. 
+// This function was used to populate the GeoJSON files in the database with party affiliation of the district's representative.
 // (This is now no longer needed with the above code):
 // -----------------------------------------------------------------------------------------------------
 // Put party preferences in GeoJSON properties
@@ -141,6 +148,7 @@ app.post("/results", function(req, res) {
 // Run this to populate the Congress Collection:
 // -----------------------------------------------------------------------------------------------------
 // for (var i = 0; i < CongressMembers.results.length; i++){
+//     console.log(CongressMembers.results[i]);
 //     db.Congress.insert(CongressMembers.results[i]);
 // }
 

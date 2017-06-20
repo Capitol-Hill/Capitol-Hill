@@ -5,8 +5,6 @@ var logger = require("morgan");
 var mongojs = require("mongojs");
 var mongoose = require("mongoose");
 var routes = require("./routes/routes");
-
-
 // Sets an initial port. We'll use this later in our listener
 var PORT = process.env.PORT || 3000;
 
@@ -25,32 +23,14 @@ app.use(express.static(__dirname +"/public"));
 // app.use("/", routes);
 // -------------------------------------------------
 
+
 // var db = process.env.MONGODB_URI || "mongodb://localhost/CapitolHill_Db";
-var mongojs = require("mongojs");
 
 var databaseUrl = "CapitolHill_Db";
 var collections = ["Districts", "Senators", "Congress", "DistrictsTest"];
 
 // Use mongojs to hook the database to the db variable
 var db = mongojs(databaseUrl, collections);
-var router = new express.Router();
-
-// This makes sure that any errors are logged if mongodb runs into an issue
-db.on("error", function(error) {
-    console.log("Database Error:", error);
-});
-// Connect mongoose to our database
-// mongoose.connect(db, function(error) {
-//   // Log any errors connecting with mongoose
-//   if (error) {
-//     console.error(error);
-//   }
-//   // Or log a success message
-//   else {
-//     console.log("mongoose connection is successful");
-//   }
-// });
-
 
 app.get("/districts", function(req, res) {
     db.Districts.find({}, function(error, districs) {
@@ -89,6 +69,7 @@ var last = req.body.last;
    };
  });
 });
+
 
 // Start the server
 app.listen(PORT, function() {
