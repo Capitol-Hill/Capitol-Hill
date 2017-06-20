@@ -53,7 +53,11 @@ db.on("error", function(error) {
 app.get("/", function(req, res) {
     // res.render("index")
     res.send(index.html)
+});
 
+app.post("/search", function(req, res) {
+    // res.render("index")
+    res.json(req.params.body)
 });
 
 // display every entry in the district collection
@@ -136,8 +140,8 @@ app.post("/results", function(req, res) {
 // -----------------------------------------------------------------------------------------------------
 // Run this to populate the Congress Collection:
 // -----------------------------------------------------------------------------------------------------
-// for (var i = 0; i < CongressMembers.results[0].members.length; i++){
-//     db.Congress.insert(CongressMembers.results[0].members[i]);
+// for (var i = 0; i < CongressMembers.results.length; i++){
+//     db.Congress.insert(CongressMembers.results[i]);
 // }
 
 // -----------------------------------------------------------------------------------------------------
@@ -154,9 +158,9 @@ app.post("/results", function(req, res) {
 // -----------------------------------------------------------------------------------------------------
 // Run this to populate the Senators Collection:
 // -----------------------------------------------------------------------------------------------------
-// for (var i = 0; i < SenateMembers.results[0].members.length; i++){
-//     db.Senators.insert(SenateMembers.results[0].members[i])
-//     console.log(SenateMembers.results[0].members)
+// for (var i = 0; i < SenateMembers.length; i++){
+//     db.Senators.insert(SenateMembers[i])
+//     console.log(SenateMembers[i])
 // }
 
 // -----------------------------------------------------------------------------------------------------
@@ -183,8 +187,16 @@ app.post("/results", function(req, res) {
 
 // Finds the representative for a matching district
 // db.Congress.find({state: 'CA', district: '27'}, (error, senators) => error ? console.log(error) : console.log(senators));
-// -----------------------------------------------------------------------------------------------------
 
+// -----------------------------------------------------------------------------------------------------
+// Testing a search bar function
+// -----------------------------------------------------------------------------------------------------
+// // import
+// const OpenStreetMapProvider = require('leaflet-geosearch');
+// // setup
+// const provider = new OpenStreetMapProvider();
+// // search
+// const results = await provider.search({ query: input.value });
 
 // -----------------------------------------------------------------------------------------------------
 // Set the app to listen on port 4000
