@@ -14,14 +14,14 @@ router.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
-router.post("/results", function(req, res) {
-  var first = req.body.first;
-  var last = req.body.last;
-  db.Senators.find({first_name: first, last_name: last }, function(error, senator) {
-    if (error) { console.log(error)}
-     var hbsObj = senator;
-     res.json(senator);
-  });
-});
+// router.post("/results", function(req, res) {
+//   var first = req.body.first;
+//   var last = req.body.last;
+//   db.Senators.find({first_name: first, last_name: last }, function(error, senator) {
+//     if (error) { console.log(error)}
+//      var hbsObj = senator;
+//      res.json(senator);
+//   });
+// });
 
 module.exports = router;

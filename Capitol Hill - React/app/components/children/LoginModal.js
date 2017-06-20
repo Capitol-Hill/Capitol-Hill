@@ -35,12 +35,12 @@ class LoginModal extends React.Component{
               <div id="test1" className="col s12">
                 <form action="/login">
                   <div className="input-field col s6">
-                    <input id="email" type="text" className="validate"/>
-                    <label htmlFor="email">email</label>
+                    <input id="login-email" type="text" className="validate"/>
+                    <label htmlFor="loginEmail">email</label>
                   </div>
                   <div className="input-field col s6">
-                    <input id="password" type="password" className="validate"/>
-                    <label htmlFor="last_name">password</label>
+                    <input id="loginPassword" type="password" className="validate"/>
+                    <label htmlFor="loginPassword">password</label>
                   </div>
 
                 </form>
@@ -48,16 +48,16 @@ class LoginModal extends React.Component{
               <div id="test2" className="col s12">
                 <form action="/signup">
                   <div className="input-field col s6">
-                    <input id="email" type="text" className="validate"/>
-                    <label htmlFor="first_name">email</label>
+                    <input id="newEmail" type="text" className="validate"/>
+                    <label htmlFor="newEmail">email</label>
                   </div>
                   <div className="input-field col s6">
-                    <input id="password" type="password" className="validate"/>
-                    <label htmlFor="last_name">password</label>
+                    <input id="newPassword" type="password" className="validate"/>
+                    <label htmlFor="newPAssword">password</label>
                   </div>
                   <div className="input-field col s6">
-                    <input id="address" type="text" className="validate"/>
-                    <label htmlFor="address">
+                    <input id="newAddress" type="text" className="validate"/>
+                    <label htmlFor="newAddress">
                       address</label>
                   </div>
                 </form>
