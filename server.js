@@ -53,7 +53,11 @@ db.on("error", function(error) {
 app.get("/", function(req, res) {
     // res.render("index")
     res.send(index.html)
+});
 
+app.post("/search", function(req, res) {
+    // res.render("index")
+    res.json(req.params.body)
 });
 
 // display every entry in the district collection
@@ -191,8 +195,16 @@ app.get("/senators", function(req, res) {
 
 // Finds the representative for a matching district
 // db.Congress.find({state: 'CA', district: '27'}, (error, senators) => error ? console.log(error) : console.log(senators));
-// -----------------------------------------------------------------------------------------------------
 
+// -----------------------------------------------------------------------------------------------------
+// Testing a search bar function
+// -----------------------------------------------------------------------------------------------------
+// // import
+// const OpenStreetMapProvider = require('leaflet-geosearch');
+// // setup
+// const provider = new OpenStreetMapProvider();
+// // search
+// const results = await provider.search({ query: input.value });
 
 // -----------------------------------------------------------------------------------------------------
 // Set the app to listen on port 4000
