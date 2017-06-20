@@ -1,4 +1,4 @@
-var SenateMembers = {
+var SenateMembers = [{
         "_id": "59459c07d31d14b1df5b0354",
         "id": "A000360",
         "api_uri": "https://api.propublica.org/congress/v1/members/A000360.json",
@@ -4199,7 +4199,7 @@ var SenateMembers = {
         "missed_votes_pct": 0,
         "votes_with_party_pct": 97.96,
         "image": "https://cdn.civil.services/senate/headshots/512x512/todd-young.jpg"
-    }
+    }]
 
 
 
