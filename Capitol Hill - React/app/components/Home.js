@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router";
 
 
-import Results from "./children/Results";
+import Results from "./Results";
 import LoginModal from "./children/LoginModal";
 import Searchbar from "./children/Searchbar";
 import MapComponent from "./children/MapComponent";
@@ -20,6 +20,7 @@ class Home extends React.Component {
     this.setTerm = this.setTerm.bind(this);
     this.setResults = this.setResults.bind(this);
     this.setResult = this.setResult.bind(this);
+    this.resultFound = this.resultFound.bind(this);
   }
 
 //   componentDidUpdate(prevProps, prevState) {
@@ -49,6 +50,10 @@ class Home extends React.Component {
     this.setState({result: result})
   }
 
+  resultFound(boolean){
+    this.setState({result: boolean})
+  }
+
   render() {
     return (
       <div>
@@ -70,13 +75,13 @@ class Home extends React.Component {
               setTerm = {this.setTerm}
               setResult = {this.setResult}
               setResults = {this.setResults}
+              resultFound = {this.resultFound}
               />
 
 
             </div>
 
             <div className="row results">
-
 
                 {this.props.children}
 

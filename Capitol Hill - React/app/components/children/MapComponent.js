@@ -20,7 +20,6 @@ class MapComponent extends React.Component {
       L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 18}).addTo(congressionalDistrictsMaps);
       MapHelper.getDistricts(congressionalDistrictsMaps);
   }
-
     render(){
       console.log("MAP");
       return (<div className="col-lg-12">
