@@ -1,5 +1,6 @@
 // Include React
 import React from "react";
+import {Link} from "react-router";
 //import helpers from "../utils/helpers";
 // Creating the Results component
 
@@ -14,9 +15,10 @@ class LoginModal extends React.Component{
         <div className="nav">
           {/* <!-- Button trigger modal --> */}
           <a className="waves-effect waves-light btn loginbtn" data-toggle="modal" data-target="#modal1">signup / login</a>
-          <a className="btn-floating btn-large waves-effect waves-light teal mapbtn" href="map.html">
-            <i className="fa fa-globe" aria-hidden="true"></i>
-          </a>
+            
+          <Link to="/map" className="btn-floating btn-large waves-effect waves-light teal mapbtn">
+              <i className="fa fa-globe" aria-hidden="true"></i>
+          </Link>
         </div>
         <div id="modal1" className="modal">
           <div className="modal-content">
@@ -35,7 +37,8 @@ class LoginModal extends React.Component{
               <div id="test1" className="col s12">
                 <form action="/login">
                   <div className="input-field col s6">
-                    <input id="login-email" type="text" className="validate"/>
+                    <input id="loginEmail" type="text" className="validate"/>
+
                     <label htmlFor="loginEmail">email</label>
                   </div>
                   <div className="input-field col s6">
@@ -53,7 +56,7 @@ class LoginModal extends React.Component{
                   </div>
                   <div className="input-field col s6">
                     <input id="newPassword" type="password" className="validate"/>
-                    <label htmlFor="newPAssword">password</label>
+                    <label htmlFor="newPassword">password</label>
                   </div>
                   <div className="input-field col s6">
                     <input id="newAddress" type="text" className="validate"/>
