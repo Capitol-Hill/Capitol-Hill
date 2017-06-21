@@ -25,7 +25,8 @@ class MapComponent extends React.Component {
 	    return (<div className="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--6-phone">
         	    	<div id="mapid" style={styles.map}>
         	    	</div>
-        		  </div>);
+        		  </div>
+      );
   	}
 }
 

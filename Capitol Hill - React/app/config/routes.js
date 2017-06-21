@@ -30,7 +30,7 @@ const routes = (
   <Router history={browserHistory}>
     <Route path="/" component={Main}>
       {/* <Route path="Home" component={Home} /> */}
-    <Route path="map" component={MapComponent}/>
+    <Route path="/map" component={MapComponent}/>
     <IndexRoute component={Main} />
     </Route>
   </Router>

@@ -8,6 +8,7 @@ import MapComponent from "./MapComponent.js";
 class Home extends React.Component {
   constructor(props) {
     super(props);
+    
   };
 
   render() {
@@ -59,7 +60,10 @@ class Home extends React.Component {
                   Capitol Hill <i className="fa fa-flag" aria-hidden="true"></i>
                 </div> --> */}
                 <Results/>
-                {this.props.children}
+              </div>
+              <div className="col-lg-12">
+                <MapComponent/>
+                {/*this.props.children*/}
               </div>
             </div>
 
