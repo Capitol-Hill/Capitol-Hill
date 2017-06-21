@@ -1,5 +1,6 @@
 // Include React
 import React from "react";
+import {Link} from "react-router";
 //import helpers from "../utils/helpers";
 // Creating the Results component
 
@@ -13,10 +14,12 @@ class LoginModal extends React.Component{
       <div className="container">
         <div className="nav">
           {/* <!-- Button trigger modal --> */}
-          <a className="waves-effect waves-light btn loginbtn" href="#SignUpLogin">signup / login</a>
-          <a className="btn-floating btn-large waves-effect waves-light teal mapbtn" href="map.html">
-            <i className="fa fa-globe" aria-hidden="true"></i>
-          </a>
+
+          <a className="waves-effect waves-light btn loginbtn" data-toggle="modal" data-target="#modal1">signup / login</a>
+            
+          <Link to="/map" className="btn-floating btn-large waves-effect waves-light teal mapbtn">
+              <i className="fa fa-globe" aria-hidden="true"></i>
+          </Link>
         </div>
 
         {/* Modal body */}
