@@ -4,15 +4,10 @@ import React from "react";
 // Creating the Results component
 
 class Results extends React.Component{
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
   }
-  // saveArticle(title, url){
-  //   console.log("You click to save ", title, url);
-  //   helpers.postSaved(title,url);
-  // alert("Article saved!");
-  // }
-  // Here we render the function
+
   render() {
     return (
       <div className = "main-container" >
