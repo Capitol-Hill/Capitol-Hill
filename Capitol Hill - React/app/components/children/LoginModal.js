@@ -1,75 +1,162 @@
 // Include React
 import React from "react";
 import {Link} from "react-router";
-//import helpers from "../utils/helpers";
-// Creating the Results component
+import { Button, Modal, Tabs, Tab } from 'react-materialize';
 
 class LoginModal extends React.Component{
   constructor() {
     super();
+    this.state = {
+    isLoggedIn: false,
+    email: "",
+    password: "",
+    address: ""
+};
+this.handleEmailChange = this.handleEmailChange.bind(this);
+this.handlePasswordChange = this.handlePasswordChange.bind(this);
+this.handleAddressChange = this.handleAddressChange.bind(this);
+
+this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+this.handleSignUpSubmit = this.handleSignUpSubmit.bind(this);
+
+this.modalChooser = this.modalChooser.bind(this);
   }
+
+
+  handleEmailChange(event){
+    event.preventDefault();
+    this.setState({email: event.target.value});
+  }
+
+  handlePasswordChange(event){
+    event.preventDefault();
+    this.setState({password: event.target.value});
+  }
+
+  handleAddressChange(event){
+    event.preventDefault();
+    this.setState({address: event.target.value});
+  }
+
+  handleLoginSubmit(event) {
+
+    console.log("Logging in with:");
+    console.log("email: " + this.state.email);
+    console.log("password: " + this.state.password);
+    event.preventDefault();
+  }
+
+  handleSignUpSubmit(event) {
+
+    console.log("Signup with:");
+    console.log("email: " + this.state.email);
+    console.log("password: " + this.state.password);
+    console.log("address: " + this.state.address);
+
+    //userAPI.postSignup(this.state.email, this.state.password);
+      event.preventDefault();
+  }
+
+  modalChooser() {
+     if (this.state.isLoggedIn === false) {
+       return (
+       <Modal
+         trigger={<Button className="loginbtn" waves='light'>Login/Signup</Button>
+         }>
+         <Tabs className='z-depth-1'>
+           <Tab title="Log In" active>
+             <form action="/user/login" method="POST">
+                   <div className="input-field col s12">
+                     <input
+                       id="email"
+                       name="email"
+                       type="email"
+                       className="validate"
+                       value ={this.state.email}
+                       onChange = {this.handleEmailChange}
+                     />
+                     <label htmlFor="loginEmail">Email</label>
+                   </div>
+                   <div className="input-field col s12">
+                     <input
+                       id="password"
+                       name="password"
+                       type="password"
+                       className="validate"
+                       value ={this.state.password}
+                       onChange = {this.handlePasswordChange}
+                     />
+                     <label htmlFor="loginPassword">Password</label>
+                   </div>
+                     <Button type="submit" waves='light' id="loginSubmit">Log In
+                     </Button>
+                 </form>
+           </Tab>
+           {/* Register Window */}
+           <Tab title="Register">
+             <form action="/user/signup" method="POST">
+                   <div className="input-field col s12">
+                     <input
+                       id="email"
+                       name="email"
+                       type="email"
+                       className="validate"
+                       value ={this.state.email}
+                       onChange = {this.handleEmailChange}
+                     />
+                     <label htmlFor="newEmail">email</label>
+                   </div>
+                   <div className="input-field col s12">
+                     <input
+                       id="password"
+                       name="password"
+                       type="password"
+                       className="validate"
+                       value ={this.state.password}
+                       onChange = {this.handlePasswordChange}
+                     />
+                     <label htmlFor="newPAssword">password</label>
+                   </div>
+                   <div className="input-field col s12">
+                     <input
+                       id="address"
+                       name="address"
+                       type="text"
+                       className="validate"
+                       value ={this.state.address}
+                       onChange = {this.handleAddressChange}
+                     />
+                     <label htmlFor="newAddress">
+                       Address</label>
+                   </div>
+                   <Button type="submit" waves='light' id="registerSubmit">Register
+                   </Button>
+             </form>
+           </Tab>
+         </Tabs>
+       </Modal>
+     );
+     } else {
+       return <p> Welcome {this.state.email}</p>;
+     }
+
+   }
 
   render() {
     return (
       <div className="container">
         <div className="nav">
           {/* <!-- Button trigger modal --> */}
-          <a className="waves-effect waves-light btn loginbtn" data-toggle="modal" data-target="#modal1">signup / login</a>
+
+        { this.modalChooser() }
 
           <Link to="/MapComponent" className="btn-floating btn-large waves-effect waves-light teal mapbtn">
               <i className="fa fa-globe" aria-hidden="true"></i>
           </Link>
         </div>
-        <div id="modal1" className="modal">
-          <div className="modal-content">
-            <div className="row">
-              <div className="col s12">
-                <ul className="tabs">
-                  <li className="tab col s3">
-                    <a className="active" id="log" href="#test1">login</a>
-                  </li>
-                  <li className="tab col s3">
-                    <a href="#test2" id="sign">signup</a>
-                  </li>
 
-                </ul>
-              </div>
-              <div id="test1" className="col s12">
-                <form action="/login">
-                  <div className="input-field col s6">
-                    <input id="loginEmail" type="text" className="validate"/>
 
-                    <label htmlFor="loginEmail">email</label>
-                  </div>
-                  <div className="input-field col s6">
-                    <input id="loginPassword" type="password" className="validate"/>
-                    <label htmlFor="loginPassword">password</label>
-                  </div>
 
-                </form>
-              </div>
-              <div id="test2" className="col s12">
-                <form action="/signup">
-                  <div className="input-field col s6">
-                    <input id="newEmail" type="text" className="validate"/>
-                    <label htmlFor="newEmail">email</label>
-                  </div>
-                  <div className="input-field col s6">
-                    <input id="newPassword" type="password" className="validate"/>
-                    <label htmlFor="newPassword">password</label>
-                  </div>
-                  <div className="input-field col s6">
-                    <input id="newAddress" type="text" className="validate"/>
-                    <label htmlFor="newAddress">
-                      address</label>
-                  </div>
-                </form>
-              </div>
-
-            </div>
-            <a href="/" className="modal-action modal-close waves-effect waves-green btn-flat">continue</a>
-          </div>
-        </div>
       </div>
     );
   }
