@@ -5,13 +5,13 @@ const MapHelper = {
 
     // Imports the GeoJSON documents from our Districts API (imported from MongoDb)
     getDistricts: function(congressionalDistrictsMaps) {
-        $.getJSON("/districts", data => {
+        $.getJSON("/api/districts", data => {
             let geojsonFeature = data;
             
-            $.getJSON("/congress", congressData => {
+            $.getJSON("/api/congress", congressData => {
                 this.congress = congressData;
 
-                    $.getJSON("/senators", senateData => {
+                    $.getJSON("/api/senators", senateData => {
                         this.senators = senateData;
                         data.forEach(a => a.onEachFeature = this.onEachFeature);
 
@@ -65,10 +65,10 @@ const MapHelper = {
                     <strong>${senator[0].state} Senators: </strong>
                     <br><img src='${senator[0].image}' style="height: 176px; width: 176px">
                     <br>${senator[0].first_name} ${senator[0].last_name} (${senator[0].party})
-                    <br><a href='/senate/${senator[0].id}/'>View ${senator[0].first_name} ${senator[0].last_name}'s Legislation Voting History</a>
+                    <br><a href='/results/${senator[0].id}/'>View ${senator[0].first_name} ${senator[0].last_name}'s Legislation Voting History</a>
                     <br><img src='${senator[1].image}' style="height: 176px; width: 176px">
                     <br>${senator[1].first_name} ${senator[1].last_name} (${senator[1].party})
-                    <br><a href='/senate/${senator[1].id}/'>View ${senator[1].first_name} ${senator[1].last_name}'s Legislation Voting History</a>
+                    <br><a href='/results/${senator[1].id}/'>View ${senator[1].first_name} ${senator[1].last_name}'s Legislation Voting History</a>
                     <br>
                     <hr>
                     <strong>Congressional Representative: </strong>
@@ -80,10 +80,10 @@ const MapHelper = {
                 <strong>${senator[0].state} Senators: </strong>
                 <br><img src='${senator[0].image}' style="height: 176px; width: 176px">
                 <br>${senator[0].first_name} ${senator[0].last_name} (${senator[0].party})
-                <br><a href='/senate/${senator[0].id}/'>View ${senator[0].first_name} ${senator[0].last_name}'s Legislation Voting History</a>
+                <br><a href='/results/${senator[0].id}/'>View ${senator[0].first_name} ${senator[0].last_name}'s Legislation Voting History</a>
                 <br><img src='${senator[1].image}' style="height: 176px; width: 176px">
                 <br>${senator[1].first_name} ${senator[1].last_name} (${senator[1].party})
-                <br><a href='/senate/${senator[1].id}/'>View ${senator[1].first_name} ${senator[1].last_name}'s Legislation Voting History</a>
+                <br><a href='/results/${senator[1].id}/'>View ${senator[1].first_name} ${senator[1].last_name}'s Legislation Voting History</a>
                 <br>
                 <hr>
                 <strong>Congressional Representative: </strong>
@@ -91,7 +91,7 @@ const MapHelper = {
                 <br>${congressMember[0].first_name} ${congressMember[0].last_name} (${congressMember[0].party})
                 <br>District: ${district}
                 <br>District Code: ${districtCode}
-                <br><a href='/congress/${congressMember[0].id}/'>View ${congressMember[0].first_name} ${congressMember[0].last_name}'s Legislation Voting History</a>
+                <br><a href='/results/${congressMember[0].id}/'>View ${congressMember[0].first_name} ${congressMember[0].last_name}'s Legislation Voting History</a>
                 <br>
                 `)
             }

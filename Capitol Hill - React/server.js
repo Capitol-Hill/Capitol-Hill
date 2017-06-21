@@ -20,55 +20,26 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 app.use(express.static(__dirname +"/public"));
-// app.use("/", routes);
+app.use("/", routes);
 // -------------------------------------------------
 
-
-// var db = process.env.MONGODB_URI || "mongodb://localhost/CapitolHill_Db";
-
-var databaseUrl = "CapitolHill_Db";
-var collections = ["Districts", "Senators", "Congress", "DistrictsTest"];
-
-// Use mongojs to hook the database to the db variable
-var db = mongojs(databaseUrl, collections);
-
-app.get("/districts", function(req, res) {
-    db.Districts.find({}, function(error, districs) {
-        error ? console.log(error) : res.json(districs);
-    });
-});
-
-// display every member in the Congress collection
-app.get("/congress", function(req, res) {
-    db.Congress.find({in_office: "true"}, function(error, congress) {
-        error ? console.log(error) : res.json(congress);
-    });
-});
-
-// display every member in the Senators collection
-app.get("/senators", function(req, res) {
-    db.Senators.find({in_office: "true"}, function(error, senators) {
-        error ? console.log(error) : res.json(senators);
-    });
-});
-
 //grabbing search value and rendering results data
-app.post("/results", function(req, res) {
-var first = req.body.first;
-var last = req.body.last;
- db.Senators.find({first_name: first, last_name: last }, function(error, senator) {
-   if (senator.length > 0) {
-     console.log(senator)
-     res.json(senator);
-   } else {
-     console.log("else")
-    db.Congress.find({first_name: first, last_name: last }, function(error, congressman) {
-       console.log(congressman)
-      res.json(congressman);
-     });
-   };
- });
-});
+// app.post("/results", function(req, res) {
+// var first = req.body.first;
+// var last = req.body.last;
+//  db.Senators.find({first_name: first, last_name: last }, function(error, senator) {
+//    if (senator.length > 0) {
+//      console.log(senator)
+//      res.json(senator);
+//    } else {
+//      console.log("else")
+//     db.Congress.find({first_name: first, last_name: last }, function(error, congressman) {
+//        console.log(congressman)
+//       res.json(congressman);
+//      });
+//    };
+//  });
+// });
 
 
 // Start the server
