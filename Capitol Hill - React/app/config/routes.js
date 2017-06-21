@@ -20,21 +20,22 @@ import { Route, IndexRoute, Router, browserHistory } from "react-router";
 
 // Reference the high-level components
 import Main from "../components/Main";
-import Home from "../components/children/Home";
-import MapComponent from "../components/children/MapComponent.js";
+import Home from "../components/Home";
+import MapComponent from "../components/children/MapComponent";
+import Results from "../components/children/Results";
 
 // Export the Routes
 const routes = (
 
   // The high level component is the Router component
   <Router history={browserHistory}>
-    <Route path="/" component={Main}>
-      {/* <Route path="Home" component={Home} /> */}
-    <Route path="/map" component={MapComponent}/>
-    <IndexRoute component={Main} />
-    </Route>
-  </Router>
 
+    <Route path="/" component={Main} >
+      {/* <Route path="Home" component={Home} /> */}
+        <Route path="MapComponent" component={MapComponent} />
+        <Route path="results" component={Results} />
+  </Route>
+</Router>
 );
 
 export default routes;
