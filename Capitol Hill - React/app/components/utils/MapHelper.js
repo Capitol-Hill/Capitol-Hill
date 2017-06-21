@@ -5,13 +5,13 @@ const MapHelper = {
 
     // Imports the GeoJSON documents from our Districts API (imported from MongoDb)
     getDistricts: function(congressionalDistrictsMaps) {
-        $.getJSON("/districts", data => {
+        $.getJSON("/api/districts", data => {
             let geojsonFeature = data;
             
-            $.getJSON("/congress", congressData => {
+            $.getJSON("/api/congress", congressData => {
                 this.congress = congressData;
 
-                    $.getJSON("/senators", senateData => {
+                    $.getJSON("/api/senators", senateData => {
                         this.senators = senateData;
                         data.forEach(a => a.onEachFeature = this.onEachFeature);
 

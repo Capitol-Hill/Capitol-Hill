@@ -66,7 +66,7 @@ class Home extends React.Component {
 
             <div className="col-lg-12 search-div">
 
-              <Searchbar
+              <Searchbar 
               setTerm = {this.setTerm}
               setResult = {this.setResult}
               setResults = {this.setResults}

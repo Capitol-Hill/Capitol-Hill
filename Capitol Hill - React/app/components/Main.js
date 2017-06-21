@@ -2,7 +2,7 @@
 import React from "react";
 
 // Here we include all of the sub-components
-import Home from "./children/Home";
+import Home from "./Home";
 
 // Creating the Main component
 class Main extends React.Component {
@@ -12,6 +12,7 @@ class Main extends React.Component {
     return (
       <div>
  		<Home/>
+ 		{this.props.children}
       </div>
     );
   }
