@@ -32,8 +32,6 @@ class Results extends React.Component{
   }
 
   componentWillReceiveProps(nextProps){
-      console.log(nextProps)
-      console.log(nextProps.routeParams)
        if (nextProps.routeParams !== this.state.lastRoute){  
           this.setState({lastRoute: nextProps.routeParams})
           const id = nextProps.routeParams.id;
@@ -47,9 +45,7 @@ class Results extends React.Component{
   }
 
   render() {
-    console.log(this.state.votingHistory)
      var voteHistoryDOM = this.state.votingHistory.map( (vote) => {
-      console.log(vote)
       var list = [];
       list.push(<div>On {vote.date} at {vote.time} 
                 <br/>{vote.question} of {vote.description}

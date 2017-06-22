@@ -1,6 +1,5 @@
 import axios from "axios";
-// import mongojs from "mongojs";
-// import mongoose from "mongoose";
+// import geocoder from "geocoder";
 
 const searchBarHelper = {
 
@@ -39,7 +38,34 @@ const searchBarHelper = {
         });
 
         return(senator[0])
+    },
+
+    searchByAddress: function(query){
+        const address = query.replace(/ /g, "+");
+        const apiKey = 'AIzaSyDghggj9A-EiGq0oE_C7z6rYASe2OTe4_4';
+        let queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=" + apiKey;
+
+        return axios.get(queryURL).then((response)=>{
+            // console.log(response.data.results[0].geometry.location)
+            return(response)
+        })
+    },
+
+
+    isAddress: function(query){
+        return (/\d/).test(query);
     }
+
+
+
+
 }
+
+
+
+
+
+
+
 
 export default searchBarHelper;
