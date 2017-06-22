@@ -3,7 +3,7 @@ import React from "react";
 
 // Include the react-router module
 import { Route, IndexRoute, Router, browserHistory } from "react-router";
-import { Switch } from 'react-router-dom'; 
+import { Switch } from 'react-router-dom';
 
 // // Include the Route component for displaying individual routes
 // var Route = router.Route;
@@ -24,6 +24,8 @@ import Main from "../components/Main";
 import Home from "../components/Home";
 import MapComponent from "../components/children/MapComponent";
 import Results from "../components/Results";
+import notFound from "../components/children/notFound";
+
 
 // Export the Routes
 const routes = (
@@ -36,6 +38,8 @@ const routes = (
 	        	<Route path="MapComponent" component={MapComponent} />
 	        	<Route path="results/" component={Results} />
 	        	<Route path="results/:id/" component={Results} />
+            <Route path="notFound" component={notFound} />
+
         	</Switch>
   		</Route>
 	</Router>
