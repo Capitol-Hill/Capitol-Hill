@@ -65,7 +65,6 @@ class Results extends React.Component{
   // }
 
   render() {
-<<<<<<< HEAD
     console.log(this.state.votingHistory)
        var voteHistoryDOM = this.state.votingHistory.map( (vote) => {
         console.log(vote)

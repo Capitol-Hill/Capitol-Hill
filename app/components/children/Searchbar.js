@@ -27,20 +27,6 @@ class Searchbar extends React.Component {
     event.preventDefault();
     this.props.setTerm(this.state.term);
 
-    const result = searchBarHelper.searchDatabases(this.state.term);
-    this.setState({term: ""});
-    if (result) {
-      // console.log(result);
-      this.setState({result: result, resultFound: true});
-      this.props.setResult(result);
-      this.props.resultFound(true);
-      browserHistory.push(`/results/${result.id}/`);
-    }
-    else {
-  browserHistory.push("/notFound");
-    }
-
-
       const result = searchBarHelper.searchDatabases(this.state.term);
       const isAddress = searchBarHelper.isAddress(this.state.term);
 
@@ -49,8 +35,8 @@ class Searchbar extends React.Component {
       this.setState({location: location});
       // console.log(this.state.location);
       this.props.setLocation(location);
-    });
-
+      })
+      
     if (isAddress === true){
         browserHistory.push("/mapComponent");
     } else if (result === undefined) {
@@ -61,8 +47,8 @@ class Searchbar extends React.Component {
         this.props.resultFound(true);
         browserHistory.push(`/results/${result.id}/`);
     }
-
   }
+
 
   render() {
 
