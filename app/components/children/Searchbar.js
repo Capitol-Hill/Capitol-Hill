@@ -7,7 +7,7 @@ import {browserHistory} from "react-router";
 class Searchbar extends React.Component {
   constructor(props) {
     super(props);
-      this.state = {term: "", result: {}, resultFound: false};
+      this.state = {term: "", result: {}, resultFound: false, location:{}};
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
   };
@@ -26,23 +26,31 @@ class Searchbar extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.setTerm(this.state.term);
-    const result = searchBarHelper.searchDatabases(this.state.term);
 
-    if (result) {
-      // console.log(result);
-      this.setState({result: result, resultFound: true});
-      this.props.setResult(result);
-      this.props.resultFound(true);
-      browserHistory.push(`/results/${result.id}/`);
-    }
-    else {
-  browserHistory.push("/notFound");
-    } 
+      const result = searchBarHelper.searchDatabases(this.state.term);
+      const isAddress = searchBarHelper.isAddress(this.state.term);
+
+      searchBarHelper.searchByAddress(this.state.term).then((response)=>{
+      let location = response.data.results[0].geometry.location;
+      this.setState({location: location});
+      // console.log(this.state.location);
+      this.props.setLocation(location);
+    });
+
+    if (isAddress === true){
+        browserHistory.push("/mapComponent");
+    } else if (result === undefined) {
+        browserHistory.push("/notFound");
+    } else if (result) {
+        this.setState({result: result, resultFound: true});
+        this.props.setResult(result);
+        this.props.resultFound(true);
+        browserHistory.push(`/results/${result.id}/`);
+    }  
   }
 
   render() {
-    // console.log(this.state.term)
-    // console.log(this.state.result)
+    
     return (
 
     <form onSubmit={this.handleSubmit}> <div className="create-update-form">
