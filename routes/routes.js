@@ -19,7 +19,7 @@ router.get("*", function(req, res) {
 
   // Cookies that have been signed
   console.log('Signed Cookies: ', req.signedCookies)
-}
+
 
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
