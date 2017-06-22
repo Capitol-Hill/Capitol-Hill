@@ -27,6 +27,20 @@ class Searchbar extends React.Component {
     event.preventDefault();
     this.props.setTerm(this.state.term);
 
+    const result = searchBarHelper.searchDatabases(this.state.term);
+    this.setState({term: ""});
+    if (result) {
+      // console.log(result);
+      this.setState({result: result, resultFound: true});
+      this.props.setResult(result);
+      this.props.resultFound(true);
+      browserHistory.push(`/results/${result.id}/`);
+    }
+    else {
+  browserHistory.push("/notFound");
+    }
+
+
       const result = searchBarHelper.searchDatabases(this.state.term);
       const isAddress = searchBarHelper.isAddress(this.state.term);
 
@@ -46,11 +60,12 @@ class Searchbar extends React.Component {
         this.props.setResult(result);
         this.props.resultFound(true);
         browserHistory.push(`/results/${result.id}/`);
-    }  
+    }
+
   }
 
   render() {
-    
+
     return (
 
     <form onSubmit={this.handleSubmit}> <div className="create-update-form">
