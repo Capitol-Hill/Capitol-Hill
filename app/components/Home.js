@@ -51,10 +51,11 @@ class Home extends React.Component {
   }
 
   resultFound(boolean){
-    this.setState({result: boolean})
+    this.setState({resultFound: boolean})
   }
 
   render() {
+    // console.log(this.state.result)
     return (
       <div>
         <LoginModal/>
