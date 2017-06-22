@@ -8,13 +8,14 @@ class LoginModal extends React.Component{
     super();
     this.state = {
     isLoggedIn: false,
-    email: "",
-    password: "",
+    loginEmail: "",
+    loginPassword: "",
+    signupEmail: "",
+    signupPassword: "",
     address: ""
 };
-this.handleEmailChange = this.handleEmailChange.bind(this);
-this.handlePasswordChange = this.handlePasswordChange.bind(this);
-this.handleAddressChange = this.handleAddressChange.bind(this);
+
+this.handleChange= this.handleChange.bind(this);
 
 this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
 this.handleSignUpSubmit = this.handleSignUpSubmit.bind(this);
@@ -22,21 +23,9 @@ this.handleSignUpSubmit = this.handleSignUpSubmit.bind(this);
 this.modalChooser = this.modalChooser.bind(this);
   }
 
-
-  handleEmailChange(event){
-    event.preventDefault();
-    this.setState({email: event.target.value});
-  }
-
-  handlePasswordChange(event){
-    event.preventDefault();
-    this.setState({password: event.target.value});
-  }
-
-  handleAddressChange(event){
-    event.preventDefault();
-    this.setState({address: event.target.value});
-  }
+handleChange(event){
+  this.setState({[event.target.name]: event.target.value});
+}
 
   handleLoginSubmit(event) {
 
@@ -63,28 +52,28 @@ this.modalChooser = this.modalChooser.bind(this);
        <Modal
          trigger={<Button className="loginbtn" waves='light'>Login/Signup</Button>
          }>
-         <Tabs className='z-depth-1'>
+         <Tabs className='z-depth-1 tabs-fixed-width'>
            <Tab title="Log In" active>
              <form action="/user/login" method="POST">
                    <div className="input-field col s12">
                      <input
-                       id="email"
-                       name="email"
+                       id="loginEmail"
+                       name="loginEmail"
                        type="email"
                        className="validate"
-                       value ={this.state.email}
-                       onChange = {this.handleEmailChange}
+                       value ={this.state.loginEmail}
+                       onChange = {this.handleChange}
                      />
                      <label htmlFor="loginEmail">Email</label>
                    </div>
                    <div className="input-field col s12">
                      <input
-                       id="password"
-                       name="password"
+                       id="loginPassword"
+                       name="loginPassword"
                        type="password"
                        className="validate"
-                       value ={this.state.password}
-                       onChange = {this.handlePasswordChange}
+                       value ={this.state.loginPassword}
+                       onChange = {this.handleChange}
                      />
                      <label htmlFor="loginPassword">Password</label>
                    </div>
@@ -97,25 +86,25 @@ this.modalChooser = this.modalChooser.bind(this);
              <form action="/user/signup" method="POST">
                    <div className="input-field col s12">
                      <input
-                       id="email"
-                       name="email"
+                       id="signupEmail"
+                       name="signupEmail"
                        type="email"
                        className="validate"
-                       value ={this.state.email}
-                       onChange = {this.handleEmailChange}
+                       value ={this.state.signupEmail}
+                       onChange = {this.handleChange}
                      />
-                     <label htmlFor="newEmail">email</label>
+                     <label htmlFor="signupEmail">Email</label>
                    </div>
                    <div className="input-field col s12">
                      <input
-                       id="password"
-                       name="password"
+                       id="signupPassword"
+                       name="signupPassword"
                        type="password"
                        className="validate"
-                       value ={this.state.password}
-                       onChange = {this.handlePasswordChange}
+                       value ={this.state.signupPassword}
+                       onChange = {this.handleChange}
                      />
-                     <label htmlFor="newPAssword">password</label>
+                     <label htmlFor="signupPassword">Password</label>
                    </div>
                    <div className="input-field col s12">
                      <input
@@ -124,12 +113,12 @@ this.modalChooser = this.modalChooser.bind(this);
                        type="text"
                        className="validate"
                        value ={this.state.address}
-                       onChange = {this.handleAddressChange}
+                       onChange = {this.handleChange}
                      />
-                     <label htmlFor="newAddress">
-                       Address</label>
+                     <label htmlFor="address">
+                       Enter Address</label>
                    </div>
-                   <Button type="submit" waves='light' id="registerSubmit">Register
+                   <Button className="center-align" type="submit" waves='light' id="registerSubmit">Register
                    </Button>
              </form>
            </Tab>
