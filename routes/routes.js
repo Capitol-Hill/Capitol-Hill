@@ -13,6 +13,14 @@ router.use("/user", userRoutes);
 // Otherwise send all other requests the index.html page
 // React router will handle routing withing the app
 router.get("*", function(req, res) {
+
+  // Cookies that have not been signed
+  console.log('Cookies: ', req.cookies)
+
+  // Cookies that have been signed
+  console.log('Signed Cookies: ', req.signedCookies)
+}
+
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
