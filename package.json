@@ -21,6 +21,7 @@
     "express-session": "^1.14.2",
     "geocoder": "^0.2.3",
     "method-override": "^2.3.9",
+    "mongojs": "^2.4.0",
     "mongoose": "^4.10.5",
     "morgan": "^1.8.2",
     "passport": "^0.3.2",
