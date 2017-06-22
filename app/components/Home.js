@@ -60,9 +60,9 @@ class Home extends React.Component {
       <div>
         <LoginModal/>
         <div className="banner">
-          <Link to="/"><div className="logo" style={styles.logo}>Capitol Hill
+          <div className="logo">Capitol Hill
             <i className="fa fa-flag" aria-hidden="true"></i>
-          </div></Link>
+          </div>
         </div>
         <div className="main-container">
           <div className="row">
@@ -72,7 +72,7 @@ class Home extends React.Component {
 
             <div className="col-lg-12 search-div">
 
-              <Searchbar
+              <Searchbar 
               setTerm = {this.setTerm}
               setResult = {this.setResult}
               setResults = {this.setResults}
@@ -95,12 +95,6 @@ class Home extends React.Component {
 
     );
   }
-}
-
-const styles = {
-    logo: {
-      color: "black"
-    }
 }
 
 export default Home;

@@ -8,14 +8,13 @@ class LoginModal extends React.Component{
     super();
     this.state = {
     isLoggedIn: false,
-    loginEmail: "",
-    loginPassword: "",
-    signupEmail: "",
-    signupPassword: "",
+    email: "",
+    password: "",
     address: ""
 };
-
-this.handleChange= this.handleChange.bind(this);
+this.handleEmailChange = this.handleEmailChange.bind(this);
+this.handlePasswordChange = this.handlePasswordChange.bind(this);
+this.handleAddressChange = this.handleAddressChange.bind(this);
 
 this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
 this.handleSignUpSubmit = this.handleSignUpSubmit.bind(this);
@@ -23,19 +22,27 @@ this.handleSignUpSubmit = this.handleSignUpSubmit.bind(this);
 this.modalChooser = this.modalChooser.bind(this);
   }
 
-handleChange(event){
-  this.setState({[event.target.name]: event.target.value});
-}
 
-handleClearChange(event){
-    this.setState({[event.target.name]:""});
-}
+  handleEmailChange(event){
+    event.preventDefault();
+    this.setState({email: event.target.value});
+  }
+
+  handlePasswordChange(event){
+    event.preventDefault();
+    this.setState({password: event.target.value});
+  }
+
+  handleAddressChange(event){
+    event.preventDefault();
+    this.setState({address: event.target.value});
+  }
+
   handleLoginSubmit(event) {
 
     console.log("Logging in with:");
     console.log("email: " + this.state.email);
     console.log("password: " + this.state.password);
-    this.setState({[event.target.name]: "");
     event.preventDefault();
   }
 
@@ -46,8 +53,8 @@ handleClearChange(event){
     console.log("password: " + this.state.password);
     console.log("address: " + this.state.address);
 
-    this.setState({[event.target.name]: "");
-  event.preventDefault();
+    //userAPI.postSignup(this.state.email, this.state.password);
+      event.preventDefault();
   }
 
   modalChooser() {
@@ -56,33 +63,32 @@ handleClearChange(event){
        <Modal
          trigger={<Button className="loginbtn" waves='light'>Login/Signup</Button>
          }>
-         <Tabs className='z-depth-1 tabs-fixed-width'>
+         <Tabs className='z-depth-1'>
            <Tab title="Log In" active>
              <form action="/user/login" method="POST">
                    <div className="input-field col s12">
-                     <br/>
                      <input
-                       id="loginEmail"
-                       name="loginEmail"
+                       id="email"
+                       name="email"
                        type="email"
                        className="validate"
-                       value ={this.state.loginEmail}
-                       onChange = {this.handleChange}
+                       value ={this.state.email}
+                       onChange = {this.handleEmailChange}
                      />
                      <label htmlFor="loginEmail">Email</label>
                    </div>
                    <div className="input-field col s12">
                      <input
-                       id="loginPassword"
-                       name="loginPassword"
+                       id="password"
+                       name="password"
                        type="password"
                        className="validate"
-                       value ={this.state.loginPassword}
-                       onChange = {this.handleChange}
+                       value ={this.state.password}
+                       onChange = {this.handlePasswordChange}
                      />
                      <label htmlFor="loginPassword">Password</label>
                    </div>
-                     <Button type="submit" waves='light' id="loginSubmit" onSubmit={handleClear}>Log In
+                     <Button type="submit" waves='light' id="loginSubmit">Log In
                      </Button>
                  </form>
            </Tab>
@@ -90,27 +96,26 @@ handleClearChange(event){
            <Tab title="Register">
              <form action="/user/signup" method="POST">
                    <div className="input-field col s12">
-                     <br/>
                      <input
-                       id="signupEmail"
-                       name="signupEmail"
+                       id="email"
+                       name="email"
                        type="email"
                        className="validate"
-                       value ={this.state.signupEmail}
-                       onChange = {this.handleChange}
+                       value ={this.state.email}
+                       onChange = {this.handleEmailChange}
                      />
-                     <label htmlFor="signupEmail">Email</label>
+                     <label htmlFor="newEmail">email</label>
                    </div>
                    <div className="input-field col s12">
                      <input
-                       id="signupPassword"
-                       name="signupPassword"
+                       id="password"
+                       name="password"
                        type="password"
                        className="validate"
-                       value ={this.state.signupPassword}
-                       onChange = {this.handleChange}
+                       value ={this.state.password}
+                       onChange = {this.handlePasswordChange}
                      />
-                     <label htmlFor="signupPassword">Password</label>
+                     <label htmlFor="newPAssword">password</label>
                    </div>
                    <div className="input-field col s12">
                      <input
@@ -119,12 +124,12 @@ handleClearChange(event){
                        type="text"
                        className="validate"
                        value ={this.state.address}
-                       onChange = {this.handleChange}
+                       onChange = {this.handleAddressChange}
                      />
-                     <label htmlFor="address">
-                       Enter Address</label>
+                     <label htmlFor="newAddress">
+                       Address</label>
                    </div>
-                   <Button className="center-align" type="submit" waves='light' id="registerSubmit">Register
+                   <Button type="submit" waves='light' id="registerSubmit">Register
                    </Button>
              </form>
            </Tab>
