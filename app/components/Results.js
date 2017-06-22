@@ -11,14 +11,13 @@ class Results extends React.Component{
       urlID: "",
       votingHistory: [],
       lastRoute: ""
-
     };
   }
 
   componentDidMount(){
     // console.log("~~~~~MOUNTED~~~~")
     resultsHelper.initializeDatabases( () => {
-      if (this.props.routeParams){  
+      if (this.props.routeParams){
           this.setState({lastRoute: this.props.routeParams})
           const id = this.props.routeParams.id;
           const url = this.props.params.id;
@@ -32,50 +31,77 @@ class Results extends React.Component{
     $('.collapsible').collapsible();
   }
 
-  componentDidUpdate(){
-    //   var voteHistoryDOM = this.state.votingHistory.votes.map( (a) => {
-    //   var list = [];
-    //   for (var key in a) {
-    //       console.log(a[key]);
-    //       // a[key] = value
-    //       list.push(<div className="card-panel">{key}: {a[key]}</div>);
-    //   }
-    //   return (list);
-    // });
-  }
-
   componentWillReceiveProps(nextProps){
-      console.log(nextProps)
-      console.log(nextProps.routeParams)
-       if (nextProps.routeParams !== this.state.lastRoute){  
+
+       if (nextProps.routeParams !== this.state.lastRoute){
+
           this.setState({lastRoute: nextProps.routeParams})
           const id = nextProps.routeParams.id;
           const url = nextProps.params.id;
           const result = resultsHelper.searchById(id);
           resultsHelper.showVotingHistory(id).then((results) => {
               const votingHistory =  results.votes;
-              // console.log(votingHistory)
               this.setState({result: result, urlID: id, votingHistory: votingHistory});
           });
         }
   }
 
-  render() {
-     var voteHistoryDOM = this.state.votingHistory.map( (a) => {
-      var list = [];
-      for (var key in a) {
-          // console.log(a[key]);
-          list.push(<div className="card-panel">{key}: {a[key]}</div>);
-      }
-      return (list);
-    });
+  // renderVotes() {
+  //   return list.map(vote => (
+  //   <div class="row">
+  //    <div class="col s12 m5">
+  //      <div class="card-panel teal">
+  //        <span class="white-text">
+  //          <div>On {vote.date} at {vote.time}
+  //                    <br/>{vote.question} of {vote.description}
+  //                    <br/>Voted {vote.position}
+  //                    <br/> Results: {vote.result}
+  //                    </div>
+  //        </span>
+  //      </div>
+  //    </div>
+  //  </div>
+  //   ))
+  // }
 
+  render() {
+<<<<<<< HEAD
+    console.log(this.state.votingHistory)
+       var voteHistoryDOM = this.state.votingHistory.map( (vote) => {
+        console.log(vote)
+
+        // var voteResult;
+        // if (vote.position === "Yes") {
+        //   votePosition = true;
+        //
+        // }
+        var list = [];
+        list.push(
+          <div className="row">
+             <div className="col s12 m12">
+               <div className="card-panel indigo voteBoxes" style={styles.votes}>
+                 <span className="white-text">
+                   <div>
+                      {vote.date} at {vote.time}
+                       <br/><h5>{vote.question} </h5>
+                       <hr/>
+                       <br/>of {vote.description}
+                       <br/>
+                       <br/> Voted: <div id={vote.position}>{vote.position}</div>
+                       <br/> Results:<div id={vote.result}>{vote.result}</div>
+                  </div>
+                 </span>
+               </div>
+             </div>
+           </div>);
+        return (list);
+      });
     return (
       <div className = "main-container" >
         <div className="row">
           <div className="col-lg-6">
             <div className="demo-card-image mdl-card mdl-shadow--2dp sen-image">
-              <img src={this.state.result.image} style={style}/>
+              <img src={this.state.result.image} style={styles.image}/>
               <div className="mdl-card__title mdl-card--expand">
               </div>
             </div>
@@ -84,7 +110,7 @@ class Results extends React.Component{
 
           <div className="card-panel contact-box">
             <span className="black-text">
-              <h3 className="senatorName"></h3>
+              <h3 className="senatorName" style={styles.headers}></h3>
              <h3>{this.state.result.first_name} {this.state.result.last_name}</h3>
               <ul className="collapsible" data-collapsible="accordion">
                 <li>
@@ -124,14 +150,18 @@ class Results extends React.Component{
       <div className = "row" >
         <div className="col-lg-12">
           <div className="card-panel">
-            <span className="black-text">
+            <span className="black-text" style={styles.headers}>
               <center>
-                <h4>Votes</h4>
+                <h4>{this.state.result.first_name}'s Votes</h4>
                 <hr/>
-              </center>
-            </span>
-          </div>
+                </center>
+              </span>
+                <div className="votesPanel">
+                {voteHistoryDOM}
+              </div>
 
+          </div>
+            {voteHistoryDOM}
         </div>
       </div>
     </div>
@@ -139,9 +169,21 @@ class Results extends React.Component{
   }
 }
 
-const style = {
-    height: "100%",
-    width: "100%",
+const styles = {
+    image: {
+      height: "100%",
+      width: "100%"
+    },
+    votes: {
+      width: "100%"
+    },
+    headers: {
+      "font-family": "Raleway"
+    },
+    Yes : {
+      color: "red"
+    }
+
 }
 {/* // Export the component back for use in other files */}
 export default Results;

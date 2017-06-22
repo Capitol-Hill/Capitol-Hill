@@ -16,27 +16,15 @@ class Home extends React.Component {
       results: [],
       result: {},
       resultFound: false,
+      location: {},
+      locationFound: false
     };
     this.setTerm = this.setTerm.bind(this);
     this.setResults = this.setResults.bind(this);
     this.setResult = this.setResult.bind(this);
     this.resultFound = this.resultFound.bind(this);
+    this.setLocation = this.setLocation.bind(this);
   }
-
-//   componentDidUpdate(prevProps, prevState) {
-//
-//   if (prevState.searchTerm !== this.state.searchTerm) {
-//     console.log("UPDATED");
-//
-//     helpers.runQuery(this.state.searchTerm).then((data) => {
-//       if (data !== this.state.results) {
-//         console.log(data);
-//
-//         this.setState({ results: data });
-//       }
-//     });
-//   }
-// }
 
   setTerm(term) {
   this.setState({term: term});
@@ -44,19 +32,35 @@ class Home extends React.Component {
 
   setResults(results){
     this.setState({results: results})
+    this.props.locationFound(false)
+    this.setState({locationFound: false})
   }
 
   setResult(result){
     this.setState({result: result})
+    this.props.locationFound(false)
+    this.setState({locationFound: false})
+
   }
 
   resultFound(boolean){
     this.setState({resultFound: boolean})
+    this.props.locationFound(false)
+    this.setState({locationFound: false})
+
+  }
+
+  setLocation(location){
+    this.setState({location: location});
+    this.props.setHomeLocation(location);
+    this.setState({locationFound: true});
   }
 
   render() {
-    // console.log(this.state.result)
+    // console.log(this.props.children)
+ 
     return (
+
       <div>
         <LoginModal/>
         <div className="banner">
@@ -69,7 +73,6 @@ class Home extends React.Component {
             <div className="col-lg-12"></div>
           </div>
           <div className="row">
-
             <div className="col-lg-12 search-div">
 
               <Searchbar
@@ -77,22 +80,16 @@ class Home extends React.Component {
               setResult = {this.setResult}
               setResults = {this.setResults}
               resultFound = {this.resultFound}
+              setLocation = {this.setLocation}
               />
 
-
             </div>
-
             <div className="row results">
-
                 {this.props.children}
-
             </div>
-
           </div>
-
         </div>
       </div>
-
     );
   }
 }
