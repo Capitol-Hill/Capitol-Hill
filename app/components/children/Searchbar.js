@@ -34,14 +34,16 @@ class Searchbar extends React.Component {
       this.props.setResult(result);
       this.props.resultFound(true);
       browserHistory.push(`/results/${result.id}/`);
-    } 
+    } else {
+      browserHistory.push("/notFound");
+    }
   }
 
   render() {
     console.log(this.state.term)
     // console.log(this.state.result)
     return (
-      
+
     <form onSubmit={this.handleSubmit}> <div className="create-update-form">
       <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label searchbar">
         <input type="text" className="mdl-textfield__input search-input" id="term" value={this.state.term} onChange={this.handleChange}/>
