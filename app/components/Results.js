@@ -11,7 +11,6 @@ class Results extends React.Component{
       urlID: "",
       votingHistory: [],
       lastRoute: ""
-
     };
   }
 
@@ -32,18 +31,6 @@ class Results extends React.Component{
     $('.collapsible').collapsible();
   }
 
-  componentDidUpdate(){
-    //   var voteHistoryDOM = this.state.votingHistory.votes.map( (a) => {
-    //   var list = [];
-    //   for (var key in a) {
-    //       console.log(a[key]);
-    //       // a[key] = value
-    //       list.push(<div className="card-panel">{key}: {a[key]}</div>);
-    //   }
-    //   return (list);
-    // });
-  }
-
   componentWillReceiveProps(nextProps){
       console.log(nextProps)
       console.log(nextProps.routeParams)
@@ -54,19 +41,21 @@ class Results extends React.Component{
           const result = resultsHelper.searchById(id);
           resultsHelper.showVotingHistory(id).then((results) => {
               const votingHistory =  results.votes;
-              // console.log(votingHistory)
               this.setState({result: result, urlID: id, votingHistory: votingHistory});
           });
         }
   }
 
   render() {
-     var voteHistoryDOM = this.state.votingHistory.map( (a) => {
+    console.log(this.state.votingHistory)
+     var voteHistoryDOM = this.state.votingHistory.map( (vote) => {
+      console.log(vote)
       var list = [];
-      for (var key in a) {
-          // console.log(a[key]);
-          list.push(<div className="card-panel">{key}: {a[key]}</div>);
-      }
+      list.push(<div>On {vote.date} at {vote.time} 
+                <br/>{vote.question} of {vote.description}
+                <br/>Voted {vote.position}
+                <br/> Results: {vote.result}
+                </div>);
       return (list);
     });
 
@@ -131,7 +120,7 @@ class Results extends React.Component{
               </center>
             </span>
           </div>
-
+            {voteHistoryDOM}
         </div>
       </div>
     </div>
