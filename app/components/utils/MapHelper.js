@@ -105,8 +105,8 @@ const MapHelper = {
 
         $.get(queryURL, function(err, res) {
             err ? console.log(err) : console.log(res)
-            let newView = [40.134335, -96.298589];
-            congressionalDistrictsMaps = L.map("madpid").setView(newView, 6);
+            // let newView = [40.134335, -96.298589];
+            // congressionalDistrictsMaps = L.map("madpid").setView(newView, 6);
         })
     }
 }

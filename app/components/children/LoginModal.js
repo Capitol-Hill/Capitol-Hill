@@ -1,60 +1,63 @@
 // Include React
 import React from "react";
 import {Link} from "react-router";
-import { Button, Modal, Tabs, Tab } from 'react-materialize';
+import {Button, Modal, Tabs, Tab} from 'react-materialize';
 
-class LoginModal extends React.Component{
+class LoginModal extends React.Component {
   constructor() {
     super();
     this.state = {
-    isLoggedIn: false,
-    email: "",
-    password: "",
-    address: ""
-};
-this.handleEmailChange = this.handleEmailChange.bind(this);
-this.handlePasswordChange = this.handlePasswordChange.bind(this);
-this.handleAddressChange = this.handleAddressChange.bind(this);
+      isLoggedIn: false,
+      loginEmail: "",
+      loginPassword: "",
+      signupEmail: "",
+      signupPassword: "",
+      address: ""
+    };
 
-this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
-this.handleSignUpSubmit = this.handleSignUpSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
 
-this.modalChooser = this.modalChooser.bind(this);
+    this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+    this.handleSignUpSubmit = this.handleSignUpSubmit.bind(this);
+
+    this.modalChooser = this.modalChooser.bind(this);
   }
 
-
-  handleEmailChange(event){
-    event.preventDefault();
-    this.setState({email: event.target.value});
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
   }
 
-  handlePasswordChange(event){
-    event.preventDefault();
-    this.setState({password: event.target.value});
+  handleClearChange(event) {
+    this.setState({
+      [event.target.name]: ""
+    });
   }
-
-  handleAddressChange(event){
-    event.preventDefault();
-    this.setState({address: event.target.value});
-  }
-
   handleLoginSubmit(event) {
 
     console.log("Logging in with:");
-    console.log("email: " + this.state.email);
-    console.log("password: " + this.state.password);
+    console.log("email: " + this.state.loginEmail);
+    console.log("password: " + this.state.loginPassword);
+
+    //  this.setState({[event.target.name]: "");
+
     event.preventDefault();
   }
 
   handleSignUpSubmit(event) {
 
     console.log("Signup with:");
-    console.log("email: " + this.state.email);
-    console.log("password: " + this.state.password);
+    console.log("email: " + this.state.signupEmail);
+    console.log("password: " + this.state.signupPassword);
     console.log("address: " + this.state.address);
 
-    //userAPI.postSignup(this.state.email, this.state.password);
-      event.preventDefault();
+    signupHelper.postSignup(this.state.signupEmail, this.state.signupPassword, this.state.address).then(data => {
+      console.log("this is the data here LoginModal.js", data);
+    })
+    //this.setState({[event.target.name]: "");
+
+    event.preventDefault();
   }
 
   modalChooser() {
@@ -148,14 +151,13 @@ this.modalChooser = this.modalChooser.bind(this);
         <div className="nav">
           {/* <!-- Button trigger modal --> */}
 
-        { this.modalChooser() }
+          {this.modalChooser()}
 
           <Link to="/MapComponent" className="btn-floating btn-large waves-effect waves-light red mapbtn">
               <i className="fa fa-globe" aria-hidden="true"></i>
+
           </Link>
         </div>
-
-
 
       </div>
     );
@@ -168,5 +170,7 @@ const styles = {
   }
 }
 
-{/* // Export the component back for use in other files */}
+
+{/* // Export the component back for use in other files */
+}
 export default LoginModal;

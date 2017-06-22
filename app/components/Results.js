@@ -11,7 +11,6 @@ class Results extends React.Component{
       urlID: "",
       votingHistory: [],
       lastRoute: ""
-
     };
   }
 
@@ -32,29 +31,16 @@ class Results extends React.Component{
     $('.collapsible').collapsible();
   }
 
-  componentDidUpdate(){
-    //   var voteHistoryDOM = this.state.votingHistory.votes.map( (a) => {
-    //   var list = [];
-    //   for (var key in a) {
-    //       console.log(a[key]);
-    //       // a[key] = value
-    //       list.push(<div className="card-panel">{key}: {a[key]}</div>);
-    //   }
-    //   return (list);
-    // });
-  }
-
   componentWillReceiveProps(nextProps){
-      console.log(nextProps)
-      console.log(nextProps.routeParams)
+
        if (nextProps.routeParams !== this.state.lastRoute){
+
           this.setState({lastRoute: nextProps.routeParams})
           const id = nextProps.routeParams.id;
           const url = nextProps.params.id;
           const result = resultsHelper.searchById(id);
           resultsHelper.showVotingHistory(id).then((results) => {
               const votingHistory =  results.votes;
-              // console.log(votingHistory)
               this.setState({result: result, urlID: id, votingHistory: votingHistory});
           });
         }
@@ -79,6 +65,7 @@ class Results extends React.Component{
   // }
 
   render() {
+<<<<<<< HEAD
     console.log(this.state.votingHistory)
        var voteHistoryDOM = this.state.votingHistory.map( (vote) => {
         console.log(vote)
@@ -174,7 +161,7 @@ class Results extends React.Component{
               </div>
 
           </div>
-
+            {voteHistoryDOM}
         </div>
       </div>
     </div>
