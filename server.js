@@ -48,7 +48,7 @@ app.use("/", routes);
 
 
 // Connect mongoose to our database
-var db = process.env.MONGODB_URI || "mongodb://localhost/captital-hill-react";
+var db = process.env.MONGODB_URI || "mongodb://localhost/CapitolHill_Db";
 
 mongoose.connect(db, function(error) {
   // Log any errors connecting with mongoose

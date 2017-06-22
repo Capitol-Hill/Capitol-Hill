@@ -64,7 +64,7 @@ class Results extends React.Component{
      var voteHistoryDOM = this.state.votingHistory.map( (a) => {
       var list = [];
       for (var key in a) {
-          console.log(a[key]);
+          // console.log(a[key]);
           list.push(<div className="card-panel">{key}: {a[key]}</div>);
       }
       return (list);
@@ -131,7 +131,7 @@ class Results extends React.Component{
               </center>
             </span>
           </div>
-          {voteHistoryDOM}
+
         </div>
       </div>
     </div>
