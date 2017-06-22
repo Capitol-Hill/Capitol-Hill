@@ -27,11 +27,15 @@ handleChange(event){
   this.setState({[event.target.name]: event.target.value});
 }
 
+handleClearChange(event){
+    this.setState({[event.target.name]:""});
+}
   handleLoginSubmit(event) {
 
     console.log("Logging in with:");
     console.log("email: " + this.state.email);
     console.log("password: " + this.state.password);
+    this.setState({[event.target.name]: "");
     event.preventDefault();
   }
 
@@ -42,8 +46,8 @@ handleChange(event){
     console.log("password: " + this.state.password);
     console.log("address: " + this.state.address);
 
-    //userAPI.postSignup(this.state.email, this.state.password);
-      event.preventDefault();
+    this.setState({[event.target.name]: "");
+  event.preventDefault();
   }
 
   modalChooser() {
@@ -56,6 +60,7 @@ handleChange(event){
            <Tab title="Log In" active>
              <form action="/user/login" method="POST">
                    <div className="input-field col s12">
+                     <br/>
                      <input
                        id="loginEmail"
                        name="loginEmail"
@@ -77,7 +82,7 @@ handleChange(event){
                      />
                      <label htmlFor="loginPassword">Password</label>
                    </div>
-                     <Button type="submit" waves='light' id="loginSubmit">Log In
+                     <Button type="submit" waves='light' id="loginSubmit" onSubmit={handleClear}>Log In
                      </Button>
                  </form>
            </Tab>
@@ -85,6 +90,7 @@ handleChange(event){
            <Tab title="Register">
              <form action="/user/signup" method="POST">
                    <div className="input-field col s12">
+                     <br/>
                      <input
                        id="signupEmail"
                        name="signupEmail"
