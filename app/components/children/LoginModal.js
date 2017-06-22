@@ -61,10 +61,10 @@ this.modalChooser = this.modalChooser.bind(this);
      if (this.state.isLoggedIn === false) {
        return (
        <Modal
-         trigger={<Button className="loginbtn" waves='light'>Login/Signup</Button>
+         trigger={<a className="btn waves-effect waves-red loginbtn">Login/Signup</a>
          }>
          <Tabs className='z-depth-1'>
-           <Tab title="Log In" active>
+           <Tab title="Log In" className="log" active>
              <form action="/user/login" method="POST">
                    <div className="input-field col s12">
                      <input
@@ -93,7 +93,7 @@ this.modalChooser = this.modalChooser.bind(this);
                  </form>
            </Tab>
            {/* Register Window */}
-           <Tab title="Register">
+           <Tab title="Register" className="log">
              <form action="/user/signup" method="POST">
                    <div className="input-field col s12">
                      <input
@@ -150,7 +150,7 @@ this.modalChooser = this.modalChooser.bind(this);
 
         { this.modalChooser() }
 
-          <Link to="/MapComponent" className="btn-floating btn-large waves-effect waves-light teal mapbtn">
+          <Link to="/MapComponent" className="btn-floating btn-large waves-effect waves-light red mapbtn">
               <i className="fa fa-globe" aria-hidden="true"></i>
           </Link>
         </div>
@@ -159,6 +159,12 @@ this.modalChooser = this.modalChooser.bind(this);
 
       </div>
     );
+  }
+}
+
+const styles = {
+  tabs: {
+    color: "rgb(0, 150, 136)"
   }
 }
 

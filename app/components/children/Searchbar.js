@@ -27,7 +27,7 @@ class Searchbar extends React.Component {
     event.preventDefault();
     this.props.setTerm(this.state.term);
     const result = searchBarHelper.searchDatabases(this.state.term);
-
+    this.setState({term: ""});
     if (result) {
       // console.log(result);
       this.setState({result: result, resultFound: true});
@@ -37,7 +37,7 @@ class Searchbar extends React.Component {
     }
     else {
   browserHistory.push("/notFound");
-    } 
+    }
   }
 
   render() {
