@@ -9,7 +9,7 @@ class Results extends React.Component{
       this.state = {
       result: {},
       urlID: "",
-      votingHistory: {},
+      votingHistory: [],
       lastRoute: ""
 
     };
@@ -24,13 +24,24 @@ class Results extends React.Component{
           const url = this.props.params.id;
           const result = resultsHelper.searchById(id);
           resultsHelper.showVotingHistory(id).then((results) => {
-              const votingHistory =  results;
-              // console.log(votingHistory)
+              const votingHistory =  results.votes;
               this.setState({result: result, urlID: id, votingHistory: votingHistory});
           });
         }
       });
-    $('.collapsible').collapsible()
+    $('.collapsible').collapsible();
+  }
+
+  componentDidUpdate(){
+    //   var voteHistoryDOM = this.state.votingHistory.votes.map( (a) => {
+    //   var list = [];
+    //   for (var key in a) {
+    //       console.log(a[key]);
+    //       // a[key] = value
+    //       list.push(<div className="card-panel">{key}: {a[key]}</div>);
+    //   }
+    //   return (list);
+    // });
   }
 
   componentWillReceiveProps(nextProps){
@@ -42,17 +53,23 @@ class Results extends React.Component{
           const url = nextProps.params.id;
           const result = resultsHelper.searchById(id);
           resultsHelper.showVotingHistory(id).then((results) => {
-              const votingHistory =  results;
+              const votingHistory =  results.votes;
               // console.log(votingHistory)
               this.setState({result: result, urlID: id, votingHistory: votingHistory});
           });
         }
   }
 
-
   render() {
-    console.log(this.state.votingHistory)
-    // this.state.votingHistory.map()
+     var voteHistoryDOM = this.state.votingHistory.map( (a) => {
+      var list = [];
+      for (var key in a) {
+          console.log(a[key]);
+          list.push(<div className="card-panel">{key}: {a[key]}</div>);
+      }
+      return (list);
+    });
+
     return (
       <div className = "main-container" >
         <div className="row">
@@ -106,15 +123,15 @@ class Results extends React.Component{
         </div>
       <div className = "row" >
         <div className="col-lg-12">
-        <div className="card-panel">
-          <span className="black-text">
-            <center>
-              <h4>Votes</h4>
-              <hr/>
-
-            </center>
-          </span>
+          <div className="card-panel">
+            <span className="black-text">
+              <center>
+                <h4>Votes</h4>
+                <hr/>
+              </center>
+            </span>
           </div>
+          {voteHistoryDOM}
         </div>
       </div>
     </div>

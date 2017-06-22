@@ -20,7 +20,7 @@ class Searchbar extends React.Component {
     var newState = {};
     newState[event.target.id] = event.target.value;
     this.setState(newState);
-    console.log(newState)
+    // console.log(newState)
   }
 
   handleSubmit(event) {
@@ -38,7 +38,7 @@ class Searchbar extends React.Component {
   }
 
   render() {
-    console.log(this.state.term)
+    // console.log(this.state.term)
     // console.log(this.state.result)
     return (
       
