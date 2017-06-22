@@ -8,6 +8,10 @@ class Results extends React.Component{
       super(props);
       this.state = {
       result: {},
+      urlID: "",
+      votingHistory: {},
+      lastRoute: ""
+
     };
   }
 
@@ -15,17 +19,40 @@ class Results extends React.Component{
     // console.log("~~~~~MOUNTED~~~~")
     resultsHelper.initializeDatabases( () => {
       if (this.props.routeParams){  
+          this.setState({lastRoute: this.props.routeParams})
           const id = this.props.routeParams.id;
           const url = this.props.params.id;
           const result = resultsHelper.searchById(id);
-          // console.log(result)
-          this.setState({result: result})
+          resultsHelper.showVotingHistory(id).then((results) => {
+              const votingHistory =  results;
+              // console.log(votingHistory)
+              this.setState({result: result, urlID: id, votingHistory: votingHistory});
+          });
         }
       });
+    $('.collapsible').collapsible()
   }
 
+  componentWillReceiveProps(nextProps){
+      console.log(nextProps)
+      console.log(nextProps.routeParams)
+       if (nextProps.routeParams !== this.state.lastRoute){  
+          this.setState({lastRoute: nextProps.routeParams})
+          const id = nextProps.routeParams.id;
+          const url = nextProps.params.id;
+          const result = resultsHelper.searchById(id);
+          resultsHelper.showVotingHistory(id).then((results) => {
+              const votingHistory =  results;
+              // console.log(votingHistory)
+              this.setState({result: result, urlID: id, votingHistory: votingHistory});
+          });
+        }
+  }
+
+
   render() {
-    // console.log(this.state.result.image)
+    console.log(this.state.votingHistory)
+    // this.state.votingHistory.map()
     return (
       <div className = "main-container" >
         <div className="row">
@@ -84,6 +111,7 @@ class Results extends React.Component{
             <center>
               <h4>Votes</h4>
               <hr/>
+
             </center>
           </span>
           </div>

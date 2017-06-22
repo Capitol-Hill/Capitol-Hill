@@ -20,6 +20,7 @@ class Searchbar extends React.Component {
     var newState = {};
     newState[event.target.id] = event.target.value;
     this.setState(newState);
+    console.log(newState)
   }
 
   handleSubmit(event) {
@@ -27,18 +28,20 @@ class Searchbar extends React.Component {
     this.props.setTerm(this.state.term);
     const result = searchBarHelper.searchDatabases(this.state.term);
 
-
     if (result) {
       // console.log(result);
       this.setState({result: result, resultFound: true});
       this.props.setResult(result);
       this.props.resultFound(true);
       browserHistory.push(`/results/${result.id}/`);
-    }
+    } 
   }
 
   render() {
+    console.log(this.state.term)
+    // console.log(this.state.result)
     return (
+      
     <form onSubmit={this.handleSubmit}> <div className="create-update-form">
       <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label searchbar">
         <input type="text" className="mdl-textfield__input search-input" id="term" value={this.state.term} onChange={this.handleChange}/>
