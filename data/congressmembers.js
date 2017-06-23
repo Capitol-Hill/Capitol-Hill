@@ -17904,6 +17904,5 @@ var CongressMembers = [{
         "votes_with_party_pct": 99.02,
         "image": "https://theunitedstates.io/images/congress/450x550/Z000017.jpg"
     }]
-}
 
 module.exports = CongressMembers;
