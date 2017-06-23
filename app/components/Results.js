@@ -46,35 +46,11 @@ class Results extends React.Component{
         }
   }
 
-  // renderVotes() {
-  //   return list.map(vote => (
-  //   <div class="row">
-  //    <div class="col s12 m5">
-  //      <div class="card-panel teal">
-  //        <span class="white-text">
-  //          <div>On {vote.date} at {vote.time}
-  //                    <br/>{vote.question} of {vote.description}
-  //                    <br/>Voted {vote.position}
-  //                    <br/> Results: {vote.result}
-  //                    </div>
-  //        </span>
-  //      </div>
-  //    </div>
-  //  </div>
-  //   ))
-  // }
-
   render() {
-<<<<<<< HEAD
     console.log(this.state.votingHistory)
        var voteHistoryDOM = this.state.votingHistory.map( (vote) => {
         console.log(vote)
 
-        // var voteResult;
-        // if (vote.position === "Yes") {
-        //   votePosition = true;
-        //
-        // }
         var list = [];
         list.push(
           <div className="row">
@@ -94,8 +70,11 @@ class Results extends React.Component{
                </div>
              </div>
            </div>);
+        
         return (list);
       });
+
+
     return (
       <div className = "main-container" >
         <div className="row">
@@ -159,9 +138,7 @@ class Results extends React.Component{
                 <div className="votesPanel">
                 {voteHistoryDOM}
               </div>
-
           </div>
-            {voteHistoryDOM}
         </div>
       </div>
     </div>
