@@ -2,11 +2,13 @@
 import React from "react";
 import {Link} from "react-router";
 import {Button, Modal, Tabs, Tab} from 'react-materialize';
+import axios from "axios";
 
 class LoginModal extends React.Component {
   constructor() {
     super();
     this.state = {
+      userEmail:"",
       isLoggedIn: false,
       loginEmail: "",
       loginPassword: "",
@@ -52,100 +54,79 @@ class LoginModal extends React.Component {
     console.log("password: " + this.state.signupPassword);
     console.log("address: " + this.state.address);
 
-    signupHelper.postSignup(this.state.signupEmail, this.state.signupPassword, this.state.address).then(data => {
-      console.log("this is the data here LoginModal.js", data);
-    })
     //this.setState({[event.target.name]: "");
 
     event.preventDefault();
   }
 
+  handleUser(event){
+      this.setState({isLoggedIn: true,
+                      userEmail: this.state.signupEmail,
+                    userEmail: this.state.loginEmail, });
+
+    }
+
+  handleLogout(event) {
+    this.setState({isLoggedIn: false});
+
+    axios.get("/user/logout");
+  }
+
+
   modalChooser() {
-     if (this.state.isLoggedIn === false) {
-       return (
-       <Modal
-         trigger={<a className="btn waves-effect waves-red loginbtn">Login/Signup</a>
-         }>
-         <Tabs className='z-depth-1'>
-           <Tab title="Log In" className="log" active>
-             <form action="/user/login" method="POST">
-                   <div className="input-field col s12">
-                     <input
-                       id="email"
-                       name="email"
-                       type="email"
-                       className="validate"
-                       value ={this.state.email}
-                       onChange = {this.handleEmailChange}
-                     />
-                     <label htmlFor="loginEmail">Email</label>
-                   </div>
-                   <div className="input-field col s12">
-                     <input
-                       id="password"
-                       name="password"
-                       type="password"
-                       className="validate"
-                       value ={this.state.password}
-                       onChange = {this.handlePasswordChange}
-                     />
-                     <label htmlFor="loginPassword">Password</label>
-                   </div>
-                     <Button type="submit" waves='light' id="loginSubmit">Log In
-                     </Button>
-                 </form>
-           </Tab>
-           {/* Register Window */}
-           <Tab title="Register" className="log">
-             <form action="/user/signup" method="POST">
-                   <div className="input-field col s12">
-                     <input
-                       id="email"
-                       name="email"
-                       type="email"
-                       className="validate"
-                       value ={this.state.email}
-                       onChange = {this.handleEmailChange}
-                     />
-                     <label htmlFor="newEmail">email</label>
-                   </div>
-                   <div className="input-field col s12">
-                     <input
-                       id="password"
-                       name="password"
-                       type="password"
-                       className="validate"
-                       value ={this.state.password}
-                       onChange = {this.handlePasswordChange}
-                     />
-                     <label htmlFor="newPAssword">password</label>
-                   </div>
-                   <div className="input-field col s12">
-                     <input
-                       id="address"
-                       name="address"
-                       type="text"
-                       className="validate"
-                       value ={this.state.address}
-                       onChange = {this.handleAddressChange}
-                     />
-                     <label htmlFor="newAddress">
-                       Address</label>
-                   </div>
-                   <Button type="submit" waves='light' id="registerSubmit">Register
-                   </Button>
-             </form>
-           </Tab>
-         </Tabs>
-       </Modal>
-     );
-     } else {
-       return <p> Welcome {this.state.email}</p>;
-     }
-
-   }
-
+    if (this.state.isLoggedIn === false) {
+      return (
+        <Modal trigger={< a className = "btn waves-effect waves-red loginbtn" > Login / Signup < /a>}>
+          <Tabs className='z-depth-1'>
+            <Tab title="Log In" className="log" active>
+              <form action="/user/login" method="POST">
+                <div className="input-field col s12">
+                  <input id="loginEmail" name="loginEmail" type="email" className="validate" value ={this.state.loginEmail} onChange={this.handleChange}/>
+                  <label htmlFor="loginEmail">Email</label>
+                </div>
+                <div className="input-field col s12">
+                  <input id="loginPassword" name="loginPassword" type="password" className="validate" value ={this.state.loginPassword} onChange={this.handleChange}/>
+                  <label htmlFor="loginPassword">Password</label>
+                </div>
+                <Button type="submit" waves='light' id="loginSubmit" className="modal-close" onClick={this.handleUser}>Log In
+                </Button>
+              </form>
+            </Tab>
+            {/* Register Window */}
+            <Tab title="Register" className="log">
+              <form action="/user/signup" method="POST">
+                <div className="input-field col s12">
+                  <input id="signupEmail" name="signupEmail" type="email" className="validate" value ={this.state.signupEmail} onChange={this.handleChange}/>
+                  <label htmlFor="newEmail">Email</label>
+                </div>
+                <div className="input-field col s12">
+                  <input id="signupPassword" name="signupPassword" type="password" className="validate" value ={this.state.signupPassword} onChange={this.handleChange}/>
+                  <label htmlFor="newPAssword">Password</label>
+                </div>
+                <div className="input-field col s12">
+                  <input id="address" name="address" type="text" className="validate" value ={this.state.address} onChange={this.handleChange}/>
+                  <label htmlFor="newAddress">
+                    Address</label>
+                </div>
+                <Button type="submit" waves='light' id="registerSubmit" className="modal-close" onClick={this.handleUser}>Register
+                </Button>
+              </form>
+            </Tab>
+          </Tabs>
+        </Modal>
+      );
+    } else {
+      return (
+        <div>
+          <a className="btn waves-effect waves-red loginbtn" onClick={this.handleLogout}>Logout</a>
+          <p>
+            Welcome {this.state.userEmail}</p>
+        </div>
+      );
+    }
+  }
   render() {
+
     return (
       <div className="container">
         <div className="nav">
@@ -154,8 +135,7 @@ class LoginModal extends React.Component {
           {this.modalChooser()}
 
           <Link to="/MapComponent" className="btn-floating btn-large waves-effect waves-light red mapbtn">
-              <i className="fa fa-globe" aria-hidden="true"></i>
-
+            <i className="fa fa-globe" aria-hidden="true"></i>
           </Link>
         </div>
 
@@ -163,14 +143,11 @@ class LoginModal extends React.Component {
     );
   }
 }
-
 const styles = {
   tabs: {
     color: "rgb(0, 150, 136)"
   }
 }
 
-
-{/* // Export the component back for use in other files */
-}
+{/* // Export the component back for use in other files */}
 export default LoginModal;
