@@ -2,13 +2,14 @@
 import React from "react";
 import {Link} from "react-router";
 import {Button, Modal, Tabs, Tab} from 'react-materialize';
-import axios from "axios";
+
+import signupHelper from "../utils/signupHelper";
+import loginHelper from "../utils/loginHelper";
 
 class LoginModal extends React.Component {
   constructor() {
     super();
     this.state = {
-      userEmail:"",
       isLoggedIn: false,
       loginEmail: "",
       loginPassword: "",
@@ -36,51 +37,47 @@ class LoginModal extends React.Component {
       [event.target.name]: ""
     });
   }
-  handleLoginSubmit(event) {
 
+  handleLoginSubmit(event) {
+    event.preventDefault();
     console.log("Logging in with:");
     console.log("email: " + this.state.loginEmail);
     console.log("password: " + this.state.loginPassword);
 
     //  this.setState({[event.target.name]: "");
+    loginHelper.postLogin(this.state.loginEmail, this.state.loginPassword).then(data => {
+      console.log("getting data from logging in", data);
+      console.log("status: " , data.status);
 
-    event.preventDefault();
+    });
+
   }
 
   handleSignUpSubmit(event) {
-
+    event.preventDefault();
     console.log("Signup with:");
     console.log("email: " + this.state.signupEmail);
     console.log("password: " + this.state.signupPassword);
     console.log("address: " + this.state.address);
 
+    signupHelper.postSignup(this.state.signupEmail, this.state.signupPassword, this.state.address).then(data => {
+      console.log("this is the data here LoginModal.js", data);
+    });
     //this.setState({[event.target.name]: "");
 
-    event.preventDefault();
-  }
 
-  handleUser(event){
-      this.setState({isLoggedIn: true,
-                      userEmail: this.state.signupEmail,
-                    userEmail: this.state.loginEmail, });
-
-    }
-
-  handleLogout(event) {
-    this.setState({isLoggedIn: false});
-
-    axios.get("/user/logout");
   }
 
 
   modalChooser() {
     if (this.state.isLoggedIn === false) {
       return (
-        <Modal trigger={< a className = "btn waves-effect waves-red loginbtn" > Login / Signup < /a>}>
-          <Tabs className='z-depth-1'>
-            <Tab title="Log In" className="log" active>
-              <form action="/user/login" method="POST">
+        <Modal trigger={<Button className = "loginbtn" waves = 'light' > Login / Signup </Button>}>
+          <Tabs className='z-depth-1 tabs-fixed-width'>
+            <Tab title="Log In" active>
+              <form onSubmit={this.handleLoginSubmit}>
                 <div className="input-field col s12">
+                  <br/>
                   <input id="loginEmail" name="loginEmail" type="email" className="validate" value ={this.state.loginEmail} onChange={this.handleChange}/>
                   <label htmlFor="loginEmail">Email</label>
                 </div>
@@ -88,27 +85,28 @@ class LoginModal extends React.Component {
                   <input id="loginPassword" name="loginPassword" type="password" className="validate" value ={this.state.loginPassword} onChange={this.handleChange}/>
                   <label htmlFor="loginPassword">Password</label>
                 </div>
-                <Button type="submit" waves='light' id="loginSubmit" className="modal-close" onClick={this.handleUser}>Log In
+                <Button type="submit" waves='light' id="loginSubmit" onSubmit={this.handleClearChange}>Log In
                 </Button>
               </form>
             </Tab>
             {/* Register Window */}
-            <Tab title="Register" className="log">
-              <form action="/user/signup" method="POST">
+            <Tab title="Register">
+              <form onSubmit={this.handleSignUpSubmit}>
                 <div className="input-field col s12">
+                  <br/>
                   <input id="signupEmail" name="signupEmail" type="email" className="validate" value ={this.state.signupEmail} onChange={this.handleChange}/>
-                  <label htmlFor="newEmail">Email</label>
+                  <label htmlFor="signupEmail">Email</label>
                 </div>
                 <div className="input-field col s12">
                   <input id="signupPassword" name="signupPassword" type="password" className="validate" value ={this.state.signupPassword} onChange={this.handleChange}/>
-                  <label htmlFor="newPAssword">Password</label>
+                  <label htmlFor="signupPassword">Password</label>
                 </div>
                 <div className="input-field col s12">
                   <input id="address" name="address" type="text" className="validate" value ={this.state.address} onChange={this.handleChange}/>
-                  <label htmlFor="newAddress">
-                    Address</label>
+                  <label htmlFor="address">
+                    Enter Address</label>
                 </div>
-                <Button type="submit" waves='light' id="registerSubmit" className="modal-close" onClick={this.handleUser}>Register
+                <Button className="center-align" type="submit" waves='light' id="registerSubmit">Register
                 </Button>
               </form>
             </Tab>
@@ -116,17 +114,13 @@ class LoginModal extends React.Component {
         </Modal>
       );
     } else {
-      return (
-        <div>
-          <a className="btn waves-effect waves-red loginbtn" onClick={this.handleLogout}>Logout</a>
-          <p>
-            Welcome {this.state.userEmail}</p>
-        </div>
-      );
+      return <p>
+        Welcome {this.state.email}</p>;
     }
-  }
-  render() {
 
+  }
+
+  render() {
     return (
       <div className="container">
         <div className="nav">
@@ -134,7 +128,7 @@ class LoginModal extends React.Component {
 
           {this.modalChooser()}
 
-          <Link to="/MapComponent" className="btn-floating btn-large waves-effect waves-light red mapbtn">
+          <Link to="/MapComponent" className="btn-floating btn-large waves-effect waves-light teal mapbtn">
             <i className="fa fa-globe" aria-hidden="true"></i>
           </Link>
         </div>
@@ -143,11 +137,7 @@ class LoginModal extends React.Component {
     );
   }
 }
-const styles = {
-  tabs: {
-    color: "rgb(0, 150, 136)"
-  }
-}
 
-{/* // Export the component back for use in other files */}
+{/* // Export the component back for use in other files */
+}
 export default LoginModal;

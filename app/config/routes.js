@@ -10,7 +10,10 @@ import Main from "../components/Main";
 import Home from "../components/Home";
 import MapComponent from "../components/children/MapComponent";
 import Results from "../components/Results";
+
 import notFound from "../components/children/notFound";
+import signupError from "../components/children/signupError";
+import loginError from "../components/children/loginError";
 
 
 // Export the Routes
@@ -25,6 +28,8 @@ const routes = (
 	        	<Route path="results/" component={Results} />
 	        	<Route path="results/:id/" component={Results} />
             <Route path="notFound" component={notFound} />
+            <Route path="signupError" component={signupError} />
+            <Route path="loginError" component={loginError} />
         	</Switch>
   		</Route>
 	</Router>
