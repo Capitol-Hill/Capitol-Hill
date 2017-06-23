@@ -77,9 +77,9 @@ router.get("/senators", function(req, res) {
   // -----------------------------------------------------------------------------------------------------
   // // Run this to populate the Congress Collection:
   // -----------------------------------------------------------------------------------------------------
-  for (var i = 0; i < CongressMembers.length; i++){
+  for (var i = 0; i < CongressMembers.members.length; i++){
     // console.log(CongressMembers.members[i])
-      db.Congress.insert(CongressMembers[i]);
+      db.Congress.insert(CongressMembers.members[i]);
   }
  
   // -----------------------------------------------------------------------------------------------------
@@ -99,12 +99,12 @@ router.get("/senators", function(req, res) {
   // -----------------------------------------------------------------------------------------------------
   // Run this to populate the Senators Collection:
   // -----------------------------------------------------------------------------------------------------
-  for (var i = 0; i < SenateMembers.length; i++){
-   var id = SenateMembers[i].id;
+  for (var i = 0; i < SenateMembers.members.length; i++){
+   var id = SenateMembers.members[i].id;
    var imageURL = `https://theunitedstates.io/images/senate/450x550/${id}.jpg`;
    // console.log(SenateMembers.results[0].members)
-     db.Senators.insert(SenateMembers[i])
-     db.Senators.update(SenateMembers[i], {$set: {image: imageURL}});
+     db.Senators.insert(SenateMembers.members[i])
+     db.Senators.update(SenateMembers.members[i], {$set: {image: imageURL}});
       // console.log(SenateMembers.results[0].members)
   }
  

@@ -1,4 +1,5 @@
-var CongressMembers = [{
+var CongressMembers = {
+    members: [{
         "_id": "59459e403c0cb8b277bc86fa",
         "id": "A000055",
         "api_uri": "https://api.propublica.org/congress/v1/members/A000055.json",
@@ -17904,5 +17905,6 @@ var CongressMembers = [{
         "votes_with_party_pct": 99.02,
         "image": "https://theunitedstates.io/images/congress/450x550/Z000017.jpg"
     }]
+}
 
 module.exports = CongressMembers;
