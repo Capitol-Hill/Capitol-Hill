@@ -1,5 +1,4 @@
-var CongressMembers = {
-    "members": [{
+var CongressMembers = [{
         "_id": "59459e403c0cb8b277bc86fa",
         "id": "A000055",
         "api_uri": "https://api.propublica.org/congress/v1/members/A000055.json",
