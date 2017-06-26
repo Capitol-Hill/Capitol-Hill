@@ -9,8 +9,8 @@ var DistrictsWithParty = require("../data/All_Districts_With_Party.js");
 //var articleController = require("../controllers/articleControllers");
 
 var router = new express.Router();
-var MONGODB_URI = "mongodb://heroku_mw9rjqj4:bpao1us5472vlm4a36ad9hit3k@ds135912.mlab.com:35912/heroku_mw9rjqj4";
-var databaseUrl = "CapitolHill_Db" || MONGODB_URI;
+
+var databaseUrl = "CapitolHill_Db" || process.env.MONGODB_URI;
 var collections = ["Districts", "Senators", "Congress", "DistrictsTest"];
 // var db = process.env.MONGODB_URI || "mongodb://localhost/CapitolHill_Db";
 
@@ -42,11 +42,11 @@ router.get("/senators", function(req, res) {
   // -----------------------------------------------------------------------------------------------------
  // Run this to populate the GeoJSON districts database, included with Party affiliation:
   // -----------------------------------------------------------------------------------------------------
-  for (let i = 0; i < DistrictsWithParty.length; i++) {
-     db.Districts.insert(DistrictsWithParty[i]);
-  }
+  // for (let i = 0; i < DistrictsWithParty.length; i++) {
+  //    db.Districts.insert(DistrictsWithParty[i]);
+  // }
   // -----------------------------------------------------------------------------------------------------
-  // This function was used to populate the GeoJSON files in the database with party affiliation of the district's representative. 
+  // This function was used to populate the GeoJSON files in the database with party affiliation of the district's representative.
   // (This is now no longer needed with the above code):
   // -----------------------------------------------------------------------------------------------------
   // Put party preferences in GeoJSON properties
@@ -77,11 +77,11 @@ router.get("/senators", function(req, res) {
   // -----------------------------------------------------------------------------------------------------
   // // Run this to populate the Congress Collection:
   // -----------------------------------------------------------------------------------------------------
-  for (var i = 0; i < CongressMembers.members.length; i++){
-    // console.log(CongressMembers.members[i])
-      db.Congress.insert(CongressMembers.members[i]);
-  }
- 
+  // for (var i = 0; i < CongressMembers.members.length; i++){
+  //   // console.log(CongressMembers.members[i])
+  //     db.Congress.insert(CongressMembers.members[i]);
+  // }
+
   // -----------------------------------------------------------------------------------------------------
   // This function WAS used to populate images in the Congress database, but is no longer required with the new data model:
   // -----------------------------------------------------------------------------------------------------
@@ -101,13 +101,13 @@ router.get("/senators", function(req, res) {
   // -----------------------------------------------------------------------------------------------------
   for (var i = 0; i < SenateMembers.members.length; i++){
    var id = SenateMembers.members[i].id;
-   var imageURL = `https://theunitedstates.io/images/senate/450x550/${id}.jpg`;
+   var imageURL = SenateMembers.members[i].image;
    // console.log(SenateMembers.results[0].members)
      db.Senators.insert(SenateMembers.members[i])
      db.Senators.update(SenateMembers.members[i], {$set: {image: imageURL}});
       // console.log(SenateMembers.results[0].members)
   }
- 
+
   // -----------------------------------------------------------------------------------------------------
   // This function WAS used to populate images in the Senators database, but is no longer required with the new data model:
   // -----------------------------------------------------------------------------------------------------
