@@ -41,7 +41,7 @@ router.get("/senators", function(req, res) {
   // POPULATE collections
   // -----------------------------------------------------------------------------------------------------
  // Run this to populate the GeoJSON districts database, included with Party affiliation:
-  // -----------------------------------------------------------------------------------------------------
+  // // -----------------------------------------------------------------------------------------------------
   // for (let i = 0; i < DistrictsWithParty.length; i++) {
   //    db.Districts.insert(DistrictsWithParty[i]);
   // }
@@ -107,7 +107,7 @@ router.get("/senators", function(req, res) {
   //    db.Senators.update(SenateMembers.members[i], {$set: {image: imageURL}});
   //     // console.log(SenateMembers.results[0].members)
   // }
-
+  //
   // -----------------------------------------------------------------------------------------------------
   // This function WAS used to populate images in the Senators database, but is no longer required with the new data model:
   // -----------------------------------------------------------------------------------------------------
