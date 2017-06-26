@@ -99,14 +99,14 @@ router.get("/senators", function(req, res) {
   // -----------------------------------------------------------------------------------------------------
   // Run this to populate the Senators Collection:
   // -----------------------------------------------------------------------------------------------------
-  for (var i = 0; i < SenateMembers.members.length; i++){
-   var id = SenateMembers.members[i].id;
-   var imageURL = SenateMembers.members[i].image;
-   // console.log(SenateMembers.results[0].members)
-     db.Senators.insert(SenateMembers.members[i])
-     db.Senators.update(SenateMembers.members[i], {$set: {image: imageURL}});
-      // console.log(SenateMembers.results[0].members)
-  }
+  // for (var i = 0; i < SenateMembers.members.length; i++){
+  //  var id = SenateMembers.members[i].id;
+  //  var imageURL = SenateMembers.members[i].image;
+  //  // console.log(SenateMembers.results[0].members)
+  //    db.Senators.insert(SenateMembers.members[i])
+  //    db.Senators.update(SenateMembers.members[i], {$set: {image: imageURL}});
+  //     // console.log(SenateMembers.results[0].members)
+  // }
 
   // -----------------------------------------------------------------------------------------------------
   // This function WAS used to populate images in the Senators database, but is no longer required with the new data model:
