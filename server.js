@@ -29,11 +29,12 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 // required for passport
-app.use(session({
-    secret: 'passportiloatheyouwithapassion', // session secret
-    resave: true,
-    saveUninitialized: true
-}));
+// app.use(session({
+//     secret: 'passportiloatheyouwithapassion', // session secret
+//     resave: true,
+//     saveUninitialized: true
+// }));
+
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
@@ -45,9 +46,28 @@ require("./app/config/passport")(passport);
 app.use(express.static(__dirname +"/public"));
 app.use("/", routes);
 // -------------------------------------------------
-// Connect mongoose to our database
 
-var db = process.env.MONGODB_URI || "mongodb://localhost/captital-hill-react" || "mongodb://localhost/CapitolHill_Db";
+//grabbing search value and rendering results data
+// app.post("/results", function(req, res) {
+// var first = req.body.first;
+// var last = req.body.last;
+//  db.Senators.find({first_name: first, last_name: last }, function(error, senator) {
+//    if (senator.length > 0) {
+//      console.log(senator)
+//      res.json(senator);
+//    } else {
+//      console.log("else")
+//     db.Congress.find({first_name: first, last_name: last }, function(error, congressman) {
+//        console.log(congressman)
+//       res.json(congressman);
+//      });
+//    };
+//  });
+// });
+
+
+// Connect mongoose to our database
+var db = process.env.MONGODB_URI || "mongodb://localhost/captital-hill-react";
 
 mongoose.connect(db, function(error) {
   // Log any errors connecting with mongoose
