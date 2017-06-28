@@ -10,8 +10,9 @@ var DistrictsWithParty = require("../data/All_Districts_With_Party.js");
 
 var router = new express.Router();
 
-var databaseUrl = "CapitolHill_Db" || process.env.MONGODB_URI;
+var databaseUrl =  process.env.MONGODB_URI || "CapitolHill_Db";
 var collections = ["Districts", "Senators", "Congress", "DistrictsTest"];
+console.log("MONGODB_URI: ", process.env.MONGODB_URI);
 // var db = process.env.MONGODB_URI || "mongodb://localhost/CapitolHill_Db";
 
 // Use mongojs to hook the database to the db variable
