@@ -10,34 +10,41 @@ class Main extends React.Component {
     super(props);
 
     this.state = {
-      location: {},
+      address: "",
+      coordinates: {},
       locationFound: false,
     };
-    this.setHomeLocation = this.setHomeLocation.bind(this);
+    this.setCoordinates = this.setCoordinates.bind(this);
     this.locationFound = this.locationFound.bind(this);
+    this.setQuery = this.setQuery.bind(this);
   }
 
-  setHomeLocation(location){
-    this.setState({location: location, locationFound: true})
+  // Sets the state with an argument passed from Home component
+  setQuery(query){
+    this.setState({address: query})
+  }
+  
+  // Sets the state with an argument passed from Home component
+  setCoordinates(coordinates){
+    this.setState({coordinates: coordinates, locationFound: true})
   }
 
+  // Sets the state with an argument passed from Home component
   locationFound(boolean){
   	this.setState({locationFound: boolean})
   }
   // Here we render the function
   render() {
-    // console.log(this.state.location)
-  	// if (this.state.locationFound === true){
-  	//    var dom = <MapComponent locationQuery={this.state.location}/>
-  	// }  
     var clonedChildren;
       if(this.props.children){
-        clonedChildren = React.cloneElement(this.props.children, {locationQuery: this.state.location, locationFound: this.state.locationFound});
+        // we clone the children and send additional props down with it, since these props were sent up from the searchbar component
+        clonedChildren = React.cloneElement(this.props.children, {address: this.state.address, coordinates: this.state.coordinates, locationFound: this.state.locationFound});
       }
     return (
       <div>
  		<Home
- 		setHomeLocation = {this.setHomeLocation}
+    setQuery = {this.setQuery}
+ 		setCoordinates = {this.setCoordinates}
  		homeLocation = {this.state.location}
  		locationFound = {this.locationFound}
  		/>

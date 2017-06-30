@@ -38,6 +38,10 @@ router.get("/senators", function(req, res) {
     });
 });
 
+module.exports = router;
+
+
+
 // -----------------------------------------------------------------------------------------------------
   // POPULATE collections
   // -----------------------------------------------------------------------------------------------------
@@ -121,4 +125,4 @@ router.get("/senators", function(req, res) {
   // db.Senators.update(SenateMembers.results[0].members[i], {$set: {image: imageURL.toLowerCase()}});
   // }
 
-module.exports = router;
+

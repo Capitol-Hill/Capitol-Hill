@@ -47,25 +47,6 @@ app.use(express.static(__dirname +"/public"));
 app.use("/", routes);
 // -------------------------------------------------
 
-//grabbing search value and rendering results data
-// app.post("/results", function(req, res) {
-// var first = req.body.first;
-// var last = req.body.last;
-//  db.Senators.find({first_name: first, last_name: last }, function(error, senator) {
-//    if (senator.length > 0) {
-//      console.log(senator)
-//      res.json(senator);
-//    } else {
-//      console.log("else")
-//     db.Congress.find({first_name: first, last_name: last }, function(error, congressman) {
-//        console.log(congressman)
-//       res.json(congressman);
-//      });
-//    };
-//  });
-// });
-
-
 // Connect mongoose to our database
 var db = process.env.MONGODB_URI || "mongodb://localhost/captital-hill-react";
 
@@ -79,7 +60,6 @@ mongoose.connect(db, function(error) {
     console.log("mongoose connection is successful");
   }
 });
-
 
 // Start the server
 app.listen(PORT, function() {

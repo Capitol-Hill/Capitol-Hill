@@ -5,6 +5,7 @@ const MapHelper = {
 
     // Imports the GeoJSON documents from our Districts API (imported from MongoDb)
     getDistricts: function(congressionalDistrictsMaps) {
+        // Renders GeoJSON files as map layers
         $.getJSON("/api/districts", data => {
             let geojsonFeature = data;
             
@@ -15,8 +16,9 @@ const MapHelper = {
                         this.senators = senateData;
                         data.forEach(a => a.onEachFeature = this.onEachFeature);
 
+                        // Binds a color to the map layer depending on the party of 
+                        // that district's representative
                         L.geoJSON(geojsonFeature, {
-
                             onEachFeature: this.onEachFeature,
                             style: function(feature) {
                                 switch (feature.properties.Party) {
@@ -36,30 +38,31 @@ const MapHelper = {
         })
     },
 
-
-
     // A function that gets passed to each GeoJSON layer. If that layer is clicked, it pulls up the properties of that layer
     onEachFeature: function(feature, layer) {
-
         var district = feature.properties.District;
         var districtCode = feature.properties.Code;
         // Spliting the district code will be used for finding the congressman of that district
         var CodeArray = districtCode.split("-");
         var stateID = CodeArray[0];
-        // States with one district are called At-Large, such as Alaska At-Large or AK-AL, hence we changed the AL to a 1 so that our database can recognize it.
+        // States with one district are called At-Large, such as Alaska At-Large or AK-AL, 
+        // hence we changed the AL to a 1 so that our database can recognize it.
         var districtID = CodeArray[1] === "AL" ? "1" : CodeArray[1];
         var congressMember;
         var senator;
 
+        // Filters through our databases for the congressman matching the GeoJSON district, so we can bind each 
+        // congressman's information on that map layer. 
         congressMember = MapHelper.congress.filter( congressman => {
             return congressman.state === stateID && congressman.district === parseInt(districtID).toString();
         })
-
+        // Filters through our databases for the senator matching the GeoJSON state, so we can bind each 
+        // Senator's information on that map layer. 
         senator = MapHelper.senators.filter( senator => {
             return senator.state === stateID;
         })
 
-
+        // Creates different popup layers, depending on whether or not that district has a congressman.
         if (!congressMember[0]) {
             layer.bindPopup(`
                     <strong>${senator[0].state} Senators: </strong>
@@ -102,12 +105,10 @@ const MapHelper = {
         const geocodeAPI = "e0b0d01ed16c4ac7a6839fee808f7142";
         let locationQuery = location.trim().replace(/ /g, "+");
         const queryURL = "http://api.opencagedata.com/geocode/v1/json?query=" + locationQuery + "&pretty=1&key=" + geocodeAPI;
-
         $.get(queryURL, function(err, res) {
             err ? console.log(err) : console.log(res)
-            // let newView = [40.134335, -96.298589];
-            // congressionalDistrictsMaps = L.map("madpid").setView(newView, 6);
         })
+        return true
     }
 }
 

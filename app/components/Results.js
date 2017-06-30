@@ -47,10 +47,7 @@ class Results extends React.Component{
   }
 
   render() {
-    console.log(this.state.votingHistory)
        var voteHistoryDOM = this.state.votingHistory.map( (vote) => {
-        console.log(vote)
-
         var list = [];
         list.push(
           <div className="row">
@@ -81,12 +78,9 @@ class Results extends React.Component{
           <div className="col-lg-6">
             <div className="demo-card-image mdl-card mdl-shadow--2dp sen-image">
               <img src={this.state.result.image} style={styles.image}/>
-              <div className="mdl-card__title mdl-card--expand">
-              </div>
             </div>
           </div>
           <div className="col-lg-6">
-
           <div className="card-panel contact-box">
             <span className="black-text">
               <h3 className="senatorName" style={styles.headers}></h3>
@@ -120,7 +114,6 @@ class Results extends React.Component{
                     <a target="_blank" id="twitter" href={"https://twitter.com/" + this.state.result.twitter_account}>@{this.state.result.twitter_account}</a>
                   </div>
                 </li>
-
               </ul>
             </span>
           </div>
@@ -148,8 +141,10 @@ class Results extends React.Component{
 
 const styles = {
     image: {
-      height: "100%",
-      width: "100%"
+      height: "75%",
+      width: "75%",
+      display: 'block',
+      margin: '0 auto',
     },
     votes: {
       width: "100%"

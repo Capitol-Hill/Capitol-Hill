@@ -6,27 +6,27 @@ const searchBarHelper = {
     congress: [],
     senate: [],
 
-    // this.initializeDatabases = this.initializeDatabases.bind(this);
-
-    initializeDatabases: function() {
-        $.getJSON("/api/congress", searchResult => {
+    initializeCongress: function() {
+        // initializes and sets congressional database
+        return $.getJSON("/api/congress", searchResult => {
             this.congress = searchResult;
         })
+    },
 
-        $.getJSON("/api/senators", searchResult => {
-            this.senate = searchResult
+    initializeSenate: function() {
+        // initializes and sets senate database
+        return $.getJSON("/api/senators", searchResult => {
+            this.senate = searchResult;
         })
     },
 
     searchDatabases: function(query) {
-      // console.log(query) /
+        // initializes and sets congressional database
         var first = query.split(' ').slice(0)
-        // console.log(first[0])
         var last = query.split(' ').slice(1);
-        // console.log(last[0])
 
         var congressMember = searchBarHelper.congress.filter(congressman => {
-            return (congressman.last_name === last[0] && congressman.first_name === first[0])
+            return (congressman.last_name.toLowerCase() === last[0].toLowerCase() && congressman.first_name.toLowerCase() === first[0].toLowerCase())
         });
         // console.log(congressMember[0])
         if (congressMember[0]){
@@ -34,7 +34,7 @@ const searchBarHelper = {
         }
 
         var senator = searchBarHelper.senate.filter(senator => {
-            return (senator.last_name === last[0] && senator.first_name === first[0])
+            return (senator.last_name.toLowerCase() === last[0].toLowerCase() && senator.first_name.toLowerCase() === first[0].toLowerCase())
         });
 
         return(senator[0])

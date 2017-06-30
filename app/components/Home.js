@@ -16,26 +16,30 @@ class Home extends React.Component {
       results: [],
       result: {},
       resultFound: false,
-      location: {},
+      coordinates: {},
       locationFound: false
     };
-    this.setTerm = this.setTerm.bind(this);
+    this.setQuery = this.setQuery.bind(this);
     this.setResults = this.setResults.bind(this);
     this.setResult = this.setResult.bind(this);
     this.resultFound = this.resultFound.bind(this);
-    this.setLocation = this.setLocation.bind(this);
+    this.setCoordinates = this.setCoordinates.bind(this);
   }
 
-  setTerm(term) {
-  this.setState({term: term});
+  // Sets the state with an argument passed from Searchbar component, and passes up to the Main component.
+  setQuery(term) {
+    this.setState({term: term});
+    this.props.setQuery(term)
   }
 
+  // Sets the state with an argument passed from Searchbar component, and passes up to the Main component.
   setResults(results){
     this.setState({results: results})
     this.props.locationFound(false)
     this.setState({locationFound: false})
   }
 
+  // Sets the state with an argument passed from Searchbar component, and passes up to the Main component.
   setResult(result){
     this.setState({result: result})
     this.props.locationFound(false)
@@ -43,6 +47,7 @@ class Home extends React.Component {
 
   }
 
+  // Sets the state with an argument passed from Searchbar component, and passes up to the Main component.  
   resultFound(boolean){
     this.setState({resultFound: boolean})
     this.props.locationFound(false)
@@ -50,15 +55,14 @@ class Home extends React.Component {
 
   }
 
-  setLocation(location){
-    this.setState({location: location});
-    this.props.setHomeLocation(location);
+  // Sets the state with an argument passed from Searchbar component, and passes up to the Main component.
+  setCoordinates(coordinates){
+    this.setState({coordinates: coordinates});
+    this.props.setCoordinates(coordinates);
     this.setState({locationFound: true});
   }
 
-  render() {
-    // console.log(this.props.children)
- 
+  render() { 
     return (
 
       <div>
@@ -76,11 +80,11 @@ class Home extends React.Component {
             <div className="col-lg-12 search-div">
 
               <Searchbar
-              setTerm = {this.setTerm}
+              setQuery = {this.setQuery}
               setResult = {this.setResult}
               setResults = {this.setResults}
               resultFound = {this.resultFound}
-              setLocation = {this.setLocation}
+              setCoordinates = {this.setCoordinates}
               />
 
             </div>
