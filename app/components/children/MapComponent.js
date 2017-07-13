@@ -13,13 +13,13 @@ class MapComponent extends React.Component {
 
   componentDidMount() {
     // If no address is entered, this sets the view of the map to the center of America
-    // if (this.props.locationFound === false){
-    // const centerOfAmerica = [40.134335, -96.298589];
-    // const congressionalDistrictsMaps = L.map('mapid').setView(centerOfAmerica, 4);
-    // // Set up the OSM layer
-    //   L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 18}).addTo(congressionalDistrictsMaps);
-    //   MapHelper.getDistricts(congressionalDistrictsMaps);
-    // } 
+    if (this.props.locationFound === false){
+    const centerOfAmerica = [40.134335, -96.298589];
+    const congressionalDistrictsMaps = L.map('mapid').setView(centerOfAmerica, 4);
+    // Set up the OSM layer
+      L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 18}).addTo(congressionalDistrictsMaps);
+      MapHelper.getDistricts(congressionalDistrictsMaps);
+    } 
     // else {
       // console.log(this.props.locationQuery)
       // const locationQuery = this.props.locationQuery;
@@ -31,10 +31,10 @@ class MapComponent extends React.Component {
   componentWillReceiveProps(nextProps){
     // If an adress is searched for, the map must be rendered here because we are recieving props from the Searchbar/Main;
     const isAddress = MapHelper.search(nextProps.address);
-    // Coordinates are returned from the 
+    // Coordinates are returned from the Searchbar/Main components
     const coordinates = nextProps.coordinates;
     const congressionalDistrictsMaps = new L.map('mapid');
-    congressionalDistrictsMaps.off();
+    // congressionalDistrictsMaps.remove();
     congressionalDistrictsMaps.setView(coordinates, 12);
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 18}).addTo(congressionalDistrictsMaps);
     MapHelper.getDistricts(congressionalDistrictsMaps);

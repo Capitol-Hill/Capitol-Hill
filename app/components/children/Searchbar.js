@@ -5,12 +5,12 @@ import {browserHistory} from "react-router";
 // Creating the Results component
 
 class Searchbar extends React.Component {
-  constructor(props) {
-    super(props);
-      this.state = {query: "", result: {}, resultFound: false, coordinates:{}, databases: {senate: [], congress: []}}
-      this.handleChange = this.handleChange.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
-  };
+    constructor(props) {
+        super(props);
+            this.state = {query: "", result: {}, resultFound: false, coordinates:{}, databases: {senate: [], congress: []}}
+            this.handleChange = this.handleChange.bind(this);
+            this.handleSubmit = this.handleSubmit.bind(this);
+    };
 
   componentDidMount(){
   // Upon mounting, we do an API request to gather House and Senate members from our databases
@@ -22,15 +22,16 @@ class Searchbar extends React.Component {
   }
 
   handleChange(event) {
-    // Changes the state upon user input
-    var newState = {};
-    newState[event.target.id] = event.target.value;
-    this.setState(newState);
+      // Changes the state upon user input
+      var newState = {};
+      newState[event.target.id] = event.target.value;
+      this.setState(newState);
   }
 
   handleSubmit(event) {
       event.preventDefault();
       this.props.setQuery(this.state.query);
+
       const result = searchBarHelper.searchDatabases(this.state.query);
       const isAddress = searchBarHelper.isAddress(this.state.query);
 
@@ -52,6 +53,8 @@ class Searchbar extends React.Component {
           } else if (result === undefined) {
               browserHistory.push("/notFound");
           }
+
+
       })
   }
 

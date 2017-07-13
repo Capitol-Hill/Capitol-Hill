@@ -19,6 +19,7 @@ class Home extends React.Component {
       coordinates: {},
       locationFound: false
     };
+    
     this.setQuery = this.setQuery.bind(this);
     this.setResults = this.setResults.bind(this);
     this.setResult = this.setResult.bind(this);

@@ -51,22 +51,22 @@ class Results extends React.Component{
         var list = [];
         list.push(
           <div className="row">
-             <div className="col s12 m12">
-               <div className="card-panel indigo voteBoxes" style={styles.votes}>
-                 <span className="white-text">
-                   <div>
-                      {vote.date} at {vote.time}
-                       <br/><h5>{vote.question} </h5>
-                       <hr/>
-                       <br/>of {vote.description}
-                       <br/>
-                       <br/> Voted: <div id={vote.position}>{vote.position}</div>
-                       <br/> Results:<div id={vote.result}>{vote.result}</div>
+              <div className="col s12 m12">
+                  <div className="card-panel indigo voteBoxes" style={styles.votes}>
+                      <span className="white-text">
+                          <div>
+                          {vote.date} at {vote.time}
+                          <br/><h5>{vote.question} </h5>
+                          <hr/>
+                          <br/>of {vote.description}
+                          <br/>
+                          <br/> Voted: <div id={vote.position}>{vote.position}</div>
+                          <br/> Results:<div id={vote.result}>{vote.result}</div>
+                          </div>
+                      </span>
                   </div>
-                 </span>
-               </div>
-             </div>
-           </div>);
+              </div>
+          </div>);
         
         return (list);
       });
