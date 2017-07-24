@@ -6,27 +6,23 @@ Capitol Hill is an application designed to easily connect people with their Sena
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
+## Prerequisites
 
-##Prerequisites
+mongoDB Command Client
 
-mongo
-
-
-### Installing
+### Installing into your local (Optional)
 
 In the command line, begin running Mongo:
 
--mongod
+```mongod```
 
 In a separate shell:
 
--npm install
+```mongo```
 
--mongo
+```-USE CapitolHill_Db```
 
--USE CapitolHill_Db
-
-Go to routes/apiRoutes.js and uncomment the following lines:
+Go to ```routes/apiRoutes.js``` and uncomment the following lines:
 
 45-47
 80-83
@@ -34,9 +30,11 @@ Go to routes/apiRoutes.js and uncomment the following lines:
 
 this will run the initial population of your databates. In the command line:
 
-webpack -w
+```npm install```
 
-node server.js
+```webpack -w```
+
+```node server.js```
 
 After your server has run once and your databases are populated, comment the above lines out again to prevent dublicate data.
 
@@ -61,8 +59,9 @@ View representatives' full profiles with contact info and recent legislation
 ![Screenshot](public/assets/images/rep-view.png)
 
 
-## Deployment
-
+## Troubleshoot
+-Input address to locate address
+-Heroku app crash from recent commit
 
 ## Built With
 
@@ -71,8 +70,6 @@ View representatives' full profiles with contact info and recent legislation
 * [Material Design Lite](https://getmdl.io/) - CSS framework
 * [Propublica](https://www.propublica.org/datastore/apis) - API used for representatives' voting history
 * [Passportjs](http://passportjs.org/docs) - User authentication middleware
-
-
 
 ## Authors
 
